@@ -1,0 +1,48 @@
+@import '../app.component.scss';
+
+.loginTopBar{
+  height:4.5rem
+}
+
+.container-fluid
+{
+  background:  center / 100% 130% no-repeat url("../../assets/images/IIOTCover.png");
+  background-size: cover;
+  border:0.1px solid rgb(0, 0, 0);
+}
+
+
+.loginBox
+{
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
+            
+            align-items: center;
+            width:25%;
+            height:auto;
+            text-align: center;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            margin:5rem auto;
+          
+      
+}
+
+
+
+@media screen and (max-width: 1134px) { 
+  .sticky-container {
+      right: -106px;
+  } 
+}
+
+
+
+
+@media screen and (max-width: 750px) { 
+  
+  .loginBox{
+    
+  }
+}
+
+

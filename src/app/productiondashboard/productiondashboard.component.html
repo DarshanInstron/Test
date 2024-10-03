@@ -1,0 +1,286 @@
+<div class="container-fluid" style="display: flex;">
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 100 : 0"
+    style="background:#f2faff;">
+
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="100" style="background: linear-gradient(to top, #daf3dc 0%, #f2faff 100%);">
+      <mat-nav-list id="treeview">
+
+        <app-kpitreeviewwithlimit (KpiTreeviewObjectData)="getKpiBoxDataByPlcNumberGatewayNoObjName($event)"
+          [LevelTypeInputs]="LevelTypePassToChild" [WithParameters]="WithParametersPassToChild"
+          [LevelUpToInputs]="LevelUpToPassToChild"></app-kpitreeviewwithlimit>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content *ngIf="IsWaitingOn">
+      <div style="background:#EFF2FF;">
+
+        <app-loader style="position:absolute;left:50%;top:50%"></app-loader>
+
+      </div>
+    </mat-sidenav-content>
+    <mat-sidenav-content *ngIf="!IsWaitingOn" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+      <app-fheader [snav]="snav" [pageName]="'PRODUCTION DASHBOARD'"></app-fheader>
+      <!-- <div style="display: flex;">
+        <button style="margin-top:-0.5rem" mat-icon-button (click)="snav.toggle()">
+          <fa-icon [icon]="faBars" size="xs" [style.color]="'grey'"></fa-icon>
+        </button>
+        <h2 style="font-weight: 700;color:rgb(91, 91, 91)">PRODUCTION DASHBOARD</h2>
+      </div> -->
+      <!-- ..........................For Non Slider..................................... -->
+      <br>
+      <div class="col-md-12" *ngIf="objOeeDashboardDtlSliderInfoList.length<2" [ngStyle]="{'height': prodContentHeight}"
+        style="overflow-x: hidden;">
+        <div class="row" *ngFor="let objOeeDashboardDtlSliderInfo of objOeeDashboardDtlSliderInfoList"
+          style="gap:3rem;margin-left:1rem;justify-content: center;">
+
+          <div class="col-md-3" class="card"
+            *ngFor="let objOeeDashboardDetailsInfo of objOeeDashboardDtlSliderInfo.objOeeDashboardDetailsInfoList"
+            onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'"
+            (click)="moveToPlanVsActual(objOeeDashboardDetailsInfo)">
+            <div class="wave-header" style="display: flex;flex-direction: column;">
+              <div>
+                <b style="font-size: 26px;float:left;">{{objOeeDashboardDetailsInfo.Name}}</b>
+                <b style="font-size: 26px;float:right;">{{objOeeDashboardDetailsInfo.ProductType}}</b>
+              </div>
+              <br>
+              <div class="content">
+                <!-- <div class="front" >
+                  <div>
+                    <div>
+                      <span  style="color:grey"><b>Planned</b></span><br>
+                      <span style="color:#000000"><b>{{objOeeDashboardDetailsInfo.Planned}}</b></span>
+                    </div>
+  
+                    <div>
+                      <span style="color:grey"><b>Actual</b></span><br>
+                      <span ><b>{{objOeeDashboardDetailsInfo.Actual}}</b></span>
+                    </div>
+  
+                    <div>
+                      <span style="color:grey"><b>Rejection</b></span><br>
+                      <span ><b>{{objOeeDashboardDetailsInfo.Rejected}}</b></span>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <span style="color:grey"><b>Down Time (Sec)</b></span>
+                      <br>
+                      <span><b>{{objOeeDashboardDetailsInfo.Downtime}}</b></span>
+                    </div>
+  
+                    <div>
+                      <span style="color:grey"><b>Cycle Time (Sec)</b></span>
+                      <br>
+                      <span ><b>{{objOeeDashboardDetailsInfo.CycleTime}}</b></span>
+                    </div>
+  
+                    <div>
+                      <span style="color:grey"><b>Material Balance (Kg)</b></span>
+                      <br>
+                      <span><b>{{objOeeDashboardDetailsInfo.MaterialBal}}</b></span>
+                    </div>
+                  </div>
+                  <div>
+                    <circle-progress [percent]=24 [radius]="60" [outerStrokeWidth]="9"
+                      [innerStrokeWidth]="0" [outerStrokeColor]=objOeeDashboardDetailsInfo.CircleColor
+                      [animation]="true" [animationDuration]="300" [showUnits]="true" [showTitle]="true"
+                      [showUnits]="true"
+                      [imageHeight]="140" [imageWidth]="140"></circle-progress>
+                  </div>
+  
+                </div> -->
+                <div class="front">
+                  <div>
+                    <div>
+                      <span style="color:grey;font-size: 16px;"><b>Planned</b></span><br>
+                      <span style="color:#000000;font-size: 20px;"><b>{{objOeeDashboardDetailsInfo.Planned}}</b></span>
+                    </div>
+
+                    <div style="margin-top:0.5rem">
+                      <span style="color:grey;font-size: 16px;"><b>Actual</b></span><br>
+                      <span style="color:#000000;font-size: 20px;"><b>{{objOeeDashboardDetailsInfo.Actual}}</b></span>
+                    </div>
+
+                    <div style="margin-top:0.5rem">
+                      <span style="color:grey;font-size: 16px;"><b>Rejection</b></span><br>
+                      <span style="color:#000000;font-size: 20px;"><b>{{objOeeDashboardDetailsInfo.Rejected}}</b></span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div>
+                      <span style="color:grey;font-size: 16px;"><b>Down Time (Sec)</b></span><br>
+                      <span style="color:#000000;font-size: 20px;"><b>{{objOeeDashboardDetailsInfo.Downtime}}</b></span>
+                    </div>
+
+                    <div style="margin-top:0.5rem">
+                      <span style="color:grey;font-size: 16px;"><b>Cycle Time (Sec)</b></span><br>
+                      <span
+                        style="color:#000000;font-size: 20px;"><b>{{objOeeDashboardDetailsInfo.CycleTime}}</b></span>
+                    </div>
+
+                    <div style="margin-top:0.5rem">
+                      <span style="color:transparent;font-size: 16px;"><b>Material Balance (Kg)</b></span><br>
+                      <span
+                        style="color:transparent;font-size: 20px;"><b>{{objOeeDashboardDetailsInfo.MaterialBal}}</b></span>
+                    </div>
+                  </div>
+                  <div>
+                    <circle-progress [percent]=objOeeDashboardDetailsInfo.nOEE [radius]="60" [outerStrokeWidth]="9"
+                      [innerStrokeWidth]="0" [outerStrokeColor]=objOeeDashboardDetailsInfo.CircleColor [titleColor]="''"
+                      [subtitleColor]=objOeeDashboardDetailsInfo.CircleColor [animation]="true"
+                      [animationDuration]="300" [showUnits]="true" [showTitle]="true" [unitsFontSize]="'16'"
+                      [showUnits]="true" [subtitle]="'OEE'" [titleFontSize]="'30'" [unitsFontSize]="'24'"
+                      [subtitleFontSize]="'20'"></circle-progress>
+                  </div>
+
+                </div>
+                <div class="col-md-12" class="back" *ngIf="barLoading" style="background:#e8f1fb;">
+                  <app-loader style="position:absolute;right:70%;margin-top:35%;background:#e8f1fb;"></app-loader>
+                </div>
+                <div class="col-md-12" class="back" *ngIf="!barLoading">
+                  <canvasjs-chart [options]="chartOptionsArray[objOeeDashboardDetailsInfo.SequenceNo]"
+                    [styles]="{width: '100%', height:'130px'}"></canvasjs-chart>
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-5 text-right">
+                        OEE {{objOeeDashboardDetailsInfo.objOeeDashGraphDetailsInfoList[0].OEE}}%
+                      </div>
+                      <div class="col-md-3 text-center">
+                        OEE {{objOeeDashboardDetailsInfo.objOeeDashGraphDetailsInfoList[1].OEE}}%
+                      </div>
+                      <div class="col-md-4 text-left">
+                        OEE {{objOeeDashboardDetailsInfo.objOeeDashGraphDetailsInfoList[2].OEE}}%
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- .......................................for slider................................................ -->
+      <div class="col-md-12" class="prodCardData" *ngIf="objOeeDashboardDtlSliderInfoList.length>1"
+        [ngStyle]="{'height': prodContentHeight}">
+
+        <mdb-carousel #carousel [controls]="false" [indicators]="false" [dark]="false" [interval]="SliderTime"
+          [pause]="false" [ride]="true" [wrap]="true">
+
+          <mdb-carousel-item *ngFor="let objOeeDashboardDtlSliderInfo of objOeeDashboardDtlSliderInfoList">
+            <!-- ..........................die cast...................................... -->
+            <div class="row" style="gap:5rem;">
+
+              <div class="col-md-3" class="card"
+                *ngFor="let objOeeDashboardDetailsInfo of objOeeDashboardDtlSliderInfo.objOeeDashboardDetailsInfoList"
+                onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="wave-header" style="display: flex;flex-direction: column;">
+                  <div>
+                    <b style="font-size: 1.5rem;float:left;">{{objOeeDashboardDetailsInfo.Name}}</b>
+                    <b style="font-size: 1.5rem;float:right;">{{objOeeDashboardDetailsInfo.ProductType}}</b>
+                  </div>
+                  <div class="content">
+                    <div class="front">
+                      <div>
+                        <div>
+                          <span style="color:grey"><b>Planned</b></span><br>
+                          <span style="color:#000000"><b>{{objOeeDashboardDetailsInfo.Planned}}</b></span>
+                        </div>
+
+                        <div>
+                          <span style="color:grey"><b>Actual</b></span><br>
+                          <span><b>{{objOeeDashboardDetailsInfo.Actual}}</b></span>
+                        </div>
+
+                        <div>
+                          <span style="color:grey"><b>Rejection</b></span><br>
+                          <span><b>{{objOeeDashboardDetailsInfo.Rejected}}</b></span>
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          <span style="color:grey"><b>Down Time (Sec)</b></span>
+                          <br>
+                          <span><b>{{objOeeDashboardDetailsInfo.Downtime}}</b></span>
+                        </div>
+
+                        <div>
+                          <span style="color:grey"><b>Cycle Time (Sec)</b></span>
+                          <br>
+                          <span><b>{{objOeeDashboardDetailsInfo.CycleTime}}</b></span>
+                        </div>
+
+                        <div>
+                          <span style="color:grey"><b>Material Balance (Kg)</b></span>
+                          <br>
+                          <span><b>{{objOeeDashboardDetailsInfo.MaterialBal}}</b></span>
+                        </div>
+                      </div>
+                      <div>
+                        <circle-progress [percent]=objOeeDashboardDetailsInfo.nOEE [radius]="60" [outerStrokeWidth]="9"
+                          [innerStrokeWidth]="0" [outerStrokeColor]=objOeeDashboardDetailsInfo.CircleColor
+                          [animation]="true" [animationDuration]="300" [showUnits]="true" [showTitle]="true"
+                          [showUnits]="true" [imageHeight]="140" [imageWidth]="140">
+                        </circle-progress>
+                      </div>
+
+                    </div>
+                    <!---->
+                    <div class="col-md-12" class="back" *ngIf="barLoading" style="background:#e8f1fb;">
+                      <app-loader style="position:absolute;right:70%;margin-top:35%;background:#e8f1fb;"></app-loader>
+                    </div>
+                    <div class="col-md-12" class="back" *ngIf="!barLoading">
+                      <canvasjs-chart [options]="chartOptionsArray[objOeeDashboardDetailsInfo.SequenceNo]"
+                        [styles]="{width: '100%', height:'130px'}"></canvasjs-chart>
+
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-5 text-right">
+                            OEE {{objOeeDashboardDetailsInfo.objOeeDashGraphDetailsInfoList[0].OEE}}%
+                          </div>
+                          <div class="col-md-3 text-center">
+                            OEE {{objOeeDashboardDetailsInfo.objOeeDashGraphDetailsInfoList[1].OEE}}%
+                          </div>
+                          <div class="col-md-4 text-left">
+                            OEE {{objOeeDashboardDetailsInfo.objOeeDashGraphDetailsInfoList[2].OEE}}%
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ..........................die cast...................................... -->
+          </mdb-carousel-item>
+
+        </mdb-carousel>
+
+      </div>
+      <br>
+      <div class="col-md-12" style="display:flex;gap:1rem;justify-content:center;"
+        *ngIf="objOeeDashboardDtlSliderInfoList.length>1">
+
+        <button class="neoButton" (click)="prevCarousel()" [disabled]="disableNxtPrev">◄ Prev</button>
+        <div class="switch-toggle">
+
+          <input type="checkbox" id="sliderToggle" (change)="toggleSwitch()">
+          <label for="sliderToggle"></label>
+
+        </div>
+        <button class="neoButton" (click)="nextCarousel()" [disabled]="disableNxtPrev">Next ►</button>
+
+      </div>
+      <app-footer style="position:fixed;bottom:0;right:0;left:0;"></app-footer>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+  <app-sideheader></app-sideheader>
+
+
+</div>

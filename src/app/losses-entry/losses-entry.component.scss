@@ -1,0 +1,38 @@
+@import "../app.component.scss";
+
+.container-fluid >form:nth-child(1)
+{
+    display: flex;
+    justify-content: center;
+    gap:4rem;
+flex-wrap: wrap;
+}
+
+.container-fluid > form
+{
+    margin-top:2rem
+}
+
+.container-fluid >div:nth-child(2)
+{
+    display: flex;
+    justify-content: center;
+    gap:3rem;
+    flex-wrap: wrap;
+}
+
+.container-fluid >div:nth-child(3)
+{
+    display: flex;
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 1600px) {
+    .mat-mdc-table {
+      
+      height:8.5rem !important;
+      
+     }
+  }
+

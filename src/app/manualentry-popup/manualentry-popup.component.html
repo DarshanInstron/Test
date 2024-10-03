@@ -1,0 +1,163 @@
+
+<div *ngIf="IsWaitingOn"
+            style="color:black !important;background: rgb(0,30,97);
+            background: linear-gradient(0deg, rgba(0,30,97,1) 0%, rgba(123,164,221,1) 30%, rgba(254,254,254,1) 100%);">
+    
+                <app-loader style="position:absolute;left:50%;top:50%"></app-loader>
+    
+</div>
+<div *ngIf="!IsWaitingOn">
+  <button class="neoButtonClose" [mat-dialog-close]="data" style="float:right;margin: 0.5rem 1rem 0 0;">X</button>
+  <h1 style="margin: 0.5rem 0 0 1rem">
+    Losses
+  </h1>
+  
+  <div style="padding:1rem">
+    <div class="row" >
+  
+      <div class="col-md-3">
+  
+        <label for="fromTime">Date:</label>
+        <input class="neoInput" required id="fromTime" disabled [value]="formattedDate" style="cursor:not-allowed">
+  
+      </div>
+      
+      <div class="col-md-3">
+        <label for="fromTime">From Time:</label>
+        <input class="neoInput" required id="fromTime" disabled [value]="TempData.FromTime" style="cursor:not-allowed">
+      </div>
+      
+      <div class="col-md-3">
+        <label for="toTime">To Time:</label>
+        <input class="neoInput" required id="toTime" disabled [value]="TempData.ToTime" style="cursor:not-allowed">
+      </div>
+      
+      <div class="col-md-3">
+        <label for="downTime">Down Time(Min.):</label>
+        <input class="neoInput" required id="downTime" disabled [value]="TempData.Dt_1" style="cursor:not-allowed">
+      </div>
+  
+      <div class="col-md-3">
+        <label for="scheduledDownTime">Scheduled Down Time(Min.):</label>
+        <input class="neoInput" required id="scheduledDownTime" disabled [value]="TempData.PlanOff" style="cursor:not-allowed">
+      </div>
+  
+      <div class="col-md-3">
+        <label for="speedLoss">Speed Loss(Min.):</label>
+        <input class="neoInput" required id="speedLoss" disabled [value]="TempData.SPEEDLOSS" style="cursor:not-allowed">
+      </div>
+  
+      <div class="col-md-3">
+  
+        <label for="productionCount">A Other Time(Min.):</label>
+        <input class="neoInput" type="number" required placeholder="0" id="AotherqtyCount" [value]="TempData.Aotherqty" disabled>
+      </div>
+      <div class="col-md-3">
+  
+        <label for="productionCount">Production Count(Nos.):</label>
+        <input class="neoInput" type="number" required placeholder="0" id="productionCount" [value]="TempData.Pc_1">
+  
+      </div>
+  
+    </div>
+    
+    <br><br>
+    <div style="border:2px solid black;padding:2rem">
+      <div style="display:flex ; width:100%; gap:2rem ">
+        <div class="col-md-4">
+          <mat-radio-group color="primary" aria-label="Select an option" [(ngModel)]="SelectedApqId">
+            <mat-radio-button value="1" (change)="GetSubGroupByStdLossGroupId('1',1)">Availability</mat-radio-button>
+            <mat-radio-button value="2" (change)="GetSubGroupByStdLossGroupId('2',1)">Performance</mat-radio-button>
+            <mat-radio-button value="3" (change)="GetSubGroupByStdLossGroupId('3',1)">Quality</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="col-md-8" *ngIf="StrErrorMsg!='Production updated successfully!' && StrErrorMsg!=''" style="color: red;font-size: large; text-align: right;">
+          <button mat-fab extended color="danger">
+            <span class="material-icons">warning</span>
+            <!-- <mat-icon>favorite</mat-icon> -->
+            Message : {{StrErrorMsg}} &nbsp;&nbsp;
+          </button>
+        </div>
+        <div class="col-md-8" *ngIf="StrErrorMsg=='Production updated successfully!'" style="color: #31ce36;font-size: large; text-align: right;">
+          <button mat-fab extended color="success">
+            <span class="material-icons">warning</span>
+            <!-- <mat-icon>favorite</mat-icon> -->
+            Message : {{StrErrorMsg}} &nbsp;&nbsp;
+          </button>
+        </div>
+      </div>
+      <br><br>
+      <div style="display: flex;gap:3rem">
+  
+        <div class="col-md-3">
+  
+          <label for="selectShift">Reason No:</label><br>
+          <mat-select id="selectShift" class="neoSelect" placeholder="Select Shift" [(ngModel)]="ReasonNo">
+            <mat-option value="0"> Select </mat-option>
+            <ng-container *ngFor="let reason of objReasonNo">
+              <mat-option [value]="reason.Id" *ngIf="reason.Id !== '4' || SelectedApqId !== '1'">
+                {{ reason.Description }}
+              </mat-option>
+              
+            </ng-container>
+          </mat-select>
+          
+        </div>
+    
+        <div class="col-md-3">
+  
+          <label> Reason: </label>
+          <mat-select #singleSelect class="neoSelect" placeholder="Select" [(ngModel)]="ReasonId">
+            <mat-option class="neoOption">
+              <ngx-mat-select-search [formControl]="StdLossGroupFilterCtrl"
+                [placeholderLabel]="'Search'"></ngx-mat-select-search>
+            </mat-option>
+            <mat-option value="0"> Select </mat-option>
+            <mat-option class="neoOption" *ngFor="let StdLossGroup of filteredStdLossGroups | async" [value]="StdLossGroup.Id" style="text-align: left;">
+              {{StdLossGroup.Description}}
+            </mat-option>
+          </mat-select>
+  
+        </div>
+  
+        <div class="col-md-3">
+          <label for="productionCount">{{dtEntryText}}:</label>
+          <input class="neoInput" type="number" required placeholder="Enter {{dtEntryText}}" id="productionCount" [(ngModel)]="TimeOrQty">
+        </div>
+        <div class="col-md-2">
+          <button class="neoButtonSuccess" style="margin-top:1rem;" (click)="AddLoseEntryToTempTable()">ADD</button>
+        </div>
+      </div>
+      <div *ngIf="objManualLossesEntryTblDataInfoList.length>0" style="max-height: 350px; overflow: auto;">
+        <table class="neomorphic-table">
+          <thead>
+            <tr>
+              <th>Loss Type</th>
+              <th>Reason No</th>
+              <th>Reason</th>
+              <th>Time/Qty</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let objManualLossesEntryTblDataInfo of objManualLossesEntryTblDataInfoList">
+              <td>
+                {{objManualLossesEntryTblDataInfo.StrApqType}}
+              </td>
+              <td>
+                {{objManualLossesEntryTblDataInfo.StrReasonNo}}
+              </td>
+              <td>{{objManualLossesEntryTblDataInfo.StreReasonId}}</td>
+              <td>{{objManualLossesEntryTblDataInfo.TimeOrQty}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="neoButtonSuccess" style="margin-top:1rem;" (click)="SaveUpdatePopupLossesInformation()">Save</button>
+    </div>
+    </div>
+      
+  </div>
+</div>
+
+
+
+

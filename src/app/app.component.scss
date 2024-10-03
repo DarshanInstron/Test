@@ -1,0 +1,424 @@
+// @import '/node_modules/ngx-datetime-picker/ngx-datetime-picker.css';
+
+
+
+$primary-color:#4b5b90;
+$secondary-color:#3f7ef2;
+$info-color:#3aa4de;
+$success-color:#1bb8a3;
+$warning-color:#f8bd58;
+$danger-color:#f17156;
+$planton-green:#33b41f;
+$planton-blue:#167aab;
+$theme-dark:#5156be;
+$theme-light:#dbdcf0;
+
+$theme-bg-light:#fbfaff;
+$primary-bg-color:#e2e5ed;
+$secondary-bg-color:#e1ebfd;
+$info-bg-color:#dff0fa;
+$success-bg-color:#daf4f0 ;
+$warning-bg-color:#fef4e4;
+$danger-bg-color:#fde8e4;
+$dark-bg-color:#e9ebec;
+$light-bg-color:#f9fbfc;
+
+
+.primaryText{
+    color:$primary-color;
+}
+.secondaryText{
+    color:$secondary-color;
+}
+.infoText{
+    color:$info-color;
+}
+.successText{
+    color:$success-color;
+}
+.warningText{
+    color:$warning-color;
+}
+.dangerText{
+    color:$danger-color;
+}
+.lightText{
+    color:grey;
+}
+.darkText{
+    color: black;
+}
+.darkThemeText{
+    color:$theme-dark
+}
+.lightThemeText{
+    color:$theme-light
+}
+
+::placeholder
+{
+    color: #a4a4a4;
+}
+
+//page header
+
+.userDefHeader
+{   margin:auto;
+    width:98%;
+    text-align: center;
+    height:2rem;
+    background: #e8f0fe;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.userDefHeader > h1
+{
+    font-weight: 700;
+    color:black;
+}
+
+// page header
+
+.sigmaGradient 
+{   color:black !important;
+    background: linear-gradient(0deg, rgba(0,30,97,1) 0%, rgba(123,164,221,1) 30%, rgba(254,254,254,1) 100%);
+}
+
+// button themes
+
+.neoButton{
+    height:3rem;
+    width:8rem;
+    border-radius: 10px;
+    border: none;
+    //background-color:#ececec;
+    background: transparent;
+    box-shadow: 0px -6px 10px 1px rgba(255, 255, 255, 1), 0px 4px 15px 1px rgba(0, 0, 0, 0.25);
+    //box-shadow: 10px 10px 10px -1px rgba(255, 255, 255, 1), -10px -10px 10px -1px rgba(0, 0, 0, 0.25);
+    }
+    
+    .neoButton:active{
+        box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+        color:$planton-green;
+    }
+
+.neoButtonSuccess
+{
+    height:3rem;
+    width:8rem;
+    border-radius: 10px;
+    border: none;
+    font-weight:800 ;
+    color: #31ce36;
+    background: transparent;
+    box-shadow: 0px -6px 10px 1px rgba(255, 255, 255, 1), 0px 4px 15px 1px rgba(0, 0, 0, 0.25);
+}
+    
+.neoButtonSuccess:active
+{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+    font-weight:700 ;
+    background-color: #31ce36;
+    color: white;
+}
+
+.neoButtonDanger
+{
+    height:3rem;
+    width:8rem;
+    border-radius: 10px;
+    border: none;
+    font-weight:800 ;
+    color: #f25961;
+    background: transparent;
+    box-shadow: 0px -6px 10px 1px rgba(255, 255, 255, 1), 0px 4px 15px 1px rgba(0, 0, 0, 0.25);
+}
+    
+.neoButtonDanger:active
+{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+    font-weight:700 ;
+    color: white;
+    background-color: #f25961;
+}
+
+.neoButtonWarning
+{
+    height:3rem;
+    width:8rem;
+    border-radius: 10px;
+    border: none;
+    font-weight:800 ;
+    color: #ffad46;
+    background: transparent;
+    box-shadow: 0px -6px 10px 1px rgba(255, 255, 255, 1), 0px 4px 15px 1px rgba(0, 0, 0, 0.25);
+}
+    
+.neoButtonWarning:active
+{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+    font-weight:700 ;
+    color: black;
+    background-color: #ffad46;
+}
+
+.neoButtonPrimary
+{
+    height:3rem;
+    width:8rem;
+    border-radius: 10px;
+    border: none;
+    font-weight:800 ;
+    color: #48abf7 ;
+    background: transparent;
+    box-shadow: 0px -6px 10px 1px rgba(255, 255, 255, 1), 0px 4px 15px 1px rgba(0, 0, 0, 0.25);
+}
+    
+.neoButtonPrimary:active
+{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+    font-weight:700 ;
+    color: white;
+    background-color: #48abf7;
+}
+
+
+// button themes
+
+
+// input , select , option theme
+
+.neoSelect,.neoOption    {
+    text-align: center;
+    width:100%;
+    height:50px;
+    background: #EFF2FF;
+    color:#1c2d61 !important;
+    border: none !important;
+    outline: none !important;
+    border-radius: 5px;
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+    
+}
+
+
+
+// .neoSelect,.neoOption :focus{
+//     border: none !important;
+//     outline: none !important;
+    
+// }
+// .neoSelect,.neoOption :hover{
+//     border: none !important;
+//     outline: none !important;
+    
+// }
+
+  .neoInput    
+{
+    text-align: center;
+    width:100%;
+    height:50px;
+    background: #EFF2FF;
+    color:black !important;
+    border: none !important;
+    outline: none !important;
+    border-radius: 5px;
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+
+}
+
+  .neoInput:hover
+{
+    text-align: center;
+    // color:$planton-green !important;
+    border: none !important;
+    outline: none !important;
+    
+}
+
+
+.mat-mdc-select , .mat-mdc-option.mdc-list-item
+{
+    display: flex;
+    text-align: center;
+    height:50px;
+    width:100%;
+    background: #EFF2FF;
+    border-radius: 5px;
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+}
+
+.mat-option , .mat-select:focus{
+    text-align: center;
+    height:50px ;
+    width:100%;
+    background: #EFF2FF;
+    color:$planton-green ;
+    border: none ;
+    outline: none ;
+    border-radius: 5px;
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+}
+
+//input , select , option theme 
+
+label
+{
+    font-size: 16px;
+    font-weight: 700;
+    color:#1c2d61;
+}
+
+
+//checkboxes, radio buttons custom color change.........>
+
+::ng-deep .mat-checkbox {
+    .mat-checkbox-ripple .mat-ripple-element {
+        background-color: $planton-green !important;
+    }
+    .mat-checkbox-frame {
+        border-color: $planton-green !important;
+    }
+}
+
+::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle {
+    border-color: $planton-green !important
+  }
+  
+  //For inner circle
+  
+  ::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle {
+    border-color: $planton-green !important
+  }
+
+
+
+
+
+//checkboxes, radio buttons custom color change........./>
+
+
+//Hide scrollbar track.............>
+
+::-webkit-scrollbar {
+    width: 4px; /* Adjust the width as needed */
+    background-color: #daf3dc; /* Hide the track */
+    cursor: pointer;
+  }
+  
+  /* Hide scrollbar thumb */
+  ::-webkit-scrollbar-thumb {
+    // background: linear-gradient(to top, #daf3dc 0%, #f2faff 100%); /* Hide the thumb */
+    background: #daf3dc;
+  }
+
+// Hide scrollbar track............./>
+
+  ::ng-deep .mat-mdc-select-placeholder
+  {
+    color: #8f8f8f;
+  }
+
+  ng-deep .mat-form-field 
+{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+}
+
+
+// mat-select , mat-option theme............>
+
+ .mat-mdc-select , .mat-mdc-option.mdc-list-item
+{
+    display: flex;
+    text-align: center;
+    height:50px;
+    width:100%;
+    background: #EFF2FF;
+    border-radius: 5px;
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+}
+
+
+
+.mat-option , .mat-select:focus{
+    text-align: center;
+    height:50px ;
+    width:100%;
+    background: #EFF2FF;
+    color: $planton-green; ;
+    border: none ;
+    outline: none ;
+    border-radius: 5px;
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+}
+
+// mat-select , mat-option theme............/>
+
+
+//mat table theme..........>
+
+.mdc-data-table__cell
+{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);                                                                                                                                                                   
+}
+
+.mdc-data-table__header-cell
+{   
+    // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; 
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+    background-color:#ecf9ed !important;
+    text-align: center !important;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+//mat-table theme............/>
+
+//treeview scroll..........>
+
+::ng-deep .mat-accordion, .mat-expansion-panel{
+    overflow-x: auto;
+  }
+  ::ng-deep  .mat-expansion-panel-header{
+    overflow-x: auto;
+  }
+   .mat-expansion-panel::-webkit-scrollbar {
+     display: none;
+  }
+
+//treeview scroll........./>
+
+
+// table theme :start
+.neomorphic-table {
+    //border-collapse: collapse;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    border-radius: 10px;
+  }
+  
+  .neomorphic-table th,
+  .neomorphic-table td {
+    padding: 0 16px;
+    text-align: center;
+   
+  }
+  
+  .neomorphic-table th {
+    background-color: #ecf9ed !important;
+    border-bottom: 1px solid #ccc;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+  
+  .neomorphic-table td {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+
+  .neomorphic-table tr{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+  }
+
+// table theme end

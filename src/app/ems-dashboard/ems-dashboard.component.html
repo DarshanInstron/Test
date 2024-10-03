@@ -1,0 +1,119 @@
+<div class="container">
+
+    <mat-drawer-container class="example-container">
+
+
+        <mat-drawer #snav style="background: linear-gradient(to top, #daf3dc 0%, #EFF2FF 100%);overflow-y:hidden">
+
+
+            <app-kpitreeviewwithlimit id="treeview" (KpiTreeviewObjectData)="getKpiBoxDataByPlcNumberGatewayNoObjName($event)"
+                [LevelTypeInputs]="LevelTypePassToChild" [LevelUpToInputs]="LevelUpToPassToChild"
+                style="background: linear-gradient(to top, #daf3dc 0%, #EFF2FF 100%);overflow-y: hidden;">
+            </app-kpitreeviewwithlimit>
+
+        </mat-drawer>
+
+
+        <mat-drawer-content style="background: #EFF2FF">
+
+            <app-fheader [snav]="snav" [pageName]="'EMS DASHBOARD'"></app-fheader>
+            <div style="display:flex;">
+
+                <div style="width:97.5%">
+                    <!-- card start-->
+                    <div style="margin-left:1rem;display: flex;justify-content: center;gap:2rem;">
+                        <div class="containerB"
+                            *ngFor="let objEmsDashboardCardInfo of objEmsDashboardCardInfoList | paginate : { itemsPerPage: KpiBoxBoxesPerPage, currentPage: page, totalItems: count}; let i = index"
+                            (click)="getTrendDataBySelectUtilityId(objEmsDashboardCardInfo)">
+                            <div class="box" class="emsCardHeader">
+                                <h2>{{objEmsDashboardCardInfo.CardHeaderTitle}}</h2>
+                            </div>
+                            <br>
+                            <div class="box" style="margin-top:-1rem">
+                                <app-newmeter [speed]="objEmsDashboardCardInfo.CurrentFlowRate"></app-newmeter>
+                            </div>
+                            <div class="box"
+                                style="margin-top:-7rem; box-shadow:  0px -6px 10px rgba(255,255,255,1),  0px 4px 15px  rgba(0, 0, 0, 0.25);">
+                                <div class="col-md-4" style="text-align: center;">
+                                    <label>Current Rate</label>
+                                    <div
+                                        style="display: flex;justify-content: center;align-items: center;gap:0.5rem;padding-top:1rem">
+                                        <fa-icon [icon]="objEmsDashboardCardInfo.CurrentFlowRateIcon" animation="beat"
+                                            size="xl"
+                                            [style.color]="objEmsDashboardCardInfo.CurrentFlowRateIcnColor"></fa-icon>
+                                        <p>{{objEmsDashboardCardInfo.CurrentFlowRateO}}
+                                            {{objEmsDashboardCardInfo.CurrentFlowRateUnit}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" *ngIf="userTypeId !== '2'" style="text-align: center;">
+                                    <label>Cost</label>
+                                    <div
+                                        style="display: flex;justify-content: center;align-items: center;gap:0.5rem;padding-top:1rem">
+                                        <fa-icon [icon]="faIndianRupeeSign" animation="beat" size="xl"
+                                            [style.color]="objEmsDashboardCardInfo.CurrentCostRateIcnColor"></fa-icon>
+                                        <p>{{objEmsDashboardCardInfo.CurrentCostRate}}{{objEmsDashboardCardInfo.CurrentCostRateUnit}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="text-align: center;">
+                                    <label>Total Consumption</label>
+
+                                    <div style="display: flex;justify-content: center;align-items: center;gap:0.5rem">
+                                        <fa-icon [icon]="objEmsDashboardCardInfo.CurrentFlowRateIcon" animation="beat"
+                                            size="xl"
+                                            [style.color]="objEmsDashboardCardInfo.CurrentFlowRateIcnColor"></fa-icon>
+                                        <p>{{objEmsDashboardCardInfo.TotalFlowConsumption}}{{objEmsDashboardCardInfo.TotalFlowConsumptionUnit}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- card end-->
+
+                    <br>
+                    <!-- paginator start-->
+                    <div class="d-flex justify-content-center" *ngIf="objEmsDashboardCardInfoList.length>0"
+                        style="color:white">
+                        <a style="padding-top: 5px;cursor: pointer;" (click)="onTableDataChange(1)"
+                            [ngStyle]="{'color':page === 1 ? '#cacdd3' : 'black' }"><i
+                                style="font-style: normal;">&#10074;&#11164;</i> First</a>
+                        <pagination-controls previousLabel="Prev" nextLabel="Next"
+                            (pageChange)="onTableDataChange($event)" style="color:white">
+                        </pagination-controls>
+                        <a style="padding-top: 5px;cursor: pointer;" (click)="onTableDataChange(-2)"
+                            [ngStyle]="{'color':page === TempPage ? '#cacdd3' : 'black' }">Last <i
+                                style="font-style: normal;">&#10148;&#10074;</i></a>
+                    </div>
+                    <!-- paginator end-->
+
+                    <br>
+                    <!-- trend start-->
+                    <div class="col-md-12" style="margin:auto;" *ngIf="IsshowTrend">
+                        <div class="userDefHeader">
+                            <h1 style="color:#1c2d61;text-align: center;"><span>{{TempSubHeaderTitle}}</span></h1>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-10 offset-md-1">
+                            <div id="chartContainer" style="height: 25rem; width: 100%; margin:auto;"></div>
+                            <button class="neoButtonDanger" (click)="EnableDisableLineChartPoints()"
+                                [ngClass]="EnableDisableBtnText === 'ENABLE DOT' ? 'neoButtonSuccess' : 'neoButtonDanger'"
+                                class="neoButton" *ngIf="objTrendLegendInfoList.length>0"
+                                style="width: auto;">{{EnableDisableBtnText}}</button>
+                        </div>
+                    </div>
+                    <!-- trend end-->
+
+                </div>
+                <app-sideheader style="width:2.5%"></app-sideheader>
+
+            </div>
+            <app-footer></app-footer>
+
+        </mat-drawer-content>
+
+
+    </mat-drawer-container>
+
+
+</div>

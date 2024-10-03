@@ -1,0 +1,74 @@
+<div class="container-fluid" style="background: #EFF2FF;">
+  <app-fheader [pageName]="'Common Setting'" [isTreeview]="false"
+  style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px !important;"></app-fheader>
+<hr style="color: transparent;">
+
+<div style="display: flex;background:#EFF2FF;padding-left:15px" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+        <div style="width:97%;">
+          <div class="userCredentialDiv1">
+    <form [formGroup]="myform">
+      <div class="row" style="align-items: center;display:flex;justify-content: center;gap:2rem;flex-wrap: wrap;">
+        
+        <div class="col-md-4 ">
+          <label>Prod.Card Update(Sec):</label>
+          <input class="neoInput" type="number"  placeholder="Production Card Update Time" name="DashboardUpdateTime" formControlName="DashboardUpdateTime" required>    
+        </div>
+        
+        <div class="col-md-4 ">
+          <label>Slider Time(Sec):</label>
+          <input class="neoInput" type="number" placeholder="Slider Time"  formControlName="SliderTime" required>
+        </div>
+
+        <div class="col-md-4 ">
+          <label>Ems Card Refresh Rate(Sec):</label>
+          <input class="neoInput" type="number" placeholder="EMS Card Refresh Rate" name="EmsCardRefreshRate" formControlName="EmsCardRefreshRate" required>
+        </div>
+
+        <div class="col-md-4 ">
+          <label>EMS Trend Refresh Rate(Sec):</label>
+          <input class="neoInput" type="number" placeholder="EMS Trend Refresh Rate" name="EmsTrendRefreshRate" formControlName="EmsTrendRefreshRate" required>
+        </div>
+
+        <div class="col-md-4 ">
+          <label>Token Expiry Time(Min):</label>
+          <input class="neoInput" type="number" placeholder="Token Expiry Time" name="TokenExpiryTime" formControlName="TokenExpiryTime" required>
+        </div>
+
+        <div class="col-md-4 ">
+          <label>Count Down Time(Min):</label>
+          <input class="neoInput" type="number" placeholder="Count Down Time" name="CountDownTime" formControlName="CountDownTime" required>
+        </div>
+
+        <div class="col-md-4 " *ngIf="false">
+          <label>StealthQuotient_UserQuantum:</label>
+          <input class="neoInput"  placeholder="StealthQuotient_UserQuantum" name="StealthQuotient_UserQuantum" formControlName="StealthQuotient_UserQuantum" required>
+        </div>
+
+        <div class="col-md-4 " *ngIf="false">
+          <label>SecureCipher_DualAuth:</label>
+          <input class="neoInput" type="number"  placeholder="SecureCipher_DualAuth" name="SecureCipher_DualAuth" formControlName="SecureCipher_DualAuth" required>
+        </div>
+
+        <div class="col-md-4 ">
+          <label>SCM Dashboard Update Time:</label>
+          <input class="neoInput" type="number"  placeholder="SCMDashboardUpdateTime" name="SCMDashboardUpdateTime" formControlName="SCMDashboardUpdateTime" required>
+        </div>
+
+      </div>
+    </form>
+    
+    <br><br>
+    <div class="col-md-12 " style="text-align:center ;">
+      <button  class="neoButtonSuccess" type="submit" (click)="onInsertUpdateCommonSettingClick()"
+        >{{BtnSaveUpdateText}}</button>&nbsp;
+
+        <button  class="neoButtonWarning" type="submit" (click)="onResetCommonSettingClick()"
+        >Reset</button>&nbsp;
+    </div></div>
+
+  </div>
+  <app-sideheader style="width:2.5%"></app-sideheader>
+  </div>
+  <app-footer style="position: fixed;bottom: 0;right:0;left:0;"></app-footer>
+
+</div>

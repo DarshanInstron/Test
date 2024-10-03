@@ -1,0 +1,47 @@
+// @import '/node_modules/ngx-datetime-picker/ngx-datetime-picker.css';
+@import '../app.component.scss';
+
+#colorToggle{
+    position:absolute;
+    right:16rem;
+    top:0rem;
+}
+#legendTable{
+    position:relative;
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+}
+
+
+  .sigmaGradient 
+{   color:black !important;
+    background: rgb(0,30,97);
+    background: linear-gradient(0deg, rgba(0,30,97,1) 0%, rgba(123,164,221,1) 30%, rgba(254,254,254,1) 100%);
+}
+
+
+@media screen and (min-width: 1600px) {
+    #chartContainer {
+      
+      height:38rem;
+      
+     }
+  }
+  .sideHeader{
+    color:#f2faff;
+    background: #f2faff !important;
+  }
+  
+  .sideHeader>div {
+      display:none;
+  }
+  
+  .sideHeader:hover>div {
+      display:block;
+    color:#18570f;
+   
+  }
+  
+  .sideHeader:hover{
+    background: #f2faff;
+  }
+  

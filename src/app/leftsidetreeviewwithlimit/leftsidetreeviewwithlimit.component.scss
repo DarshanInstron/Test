@@ -1,0 +1,71 @@
+// @import '../app.component.scss';
+//  *{
+//   font-size: 0.9rem;
+//     font-weight: 550;
+//     color:black
+//  }
+//  .mat-expansion-panel-header,.mat-acordian,.mat-expansion-panel{
+//     background-color: transparent;
+//     background: transparent !important;
+//     box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+    
+//   }
+
+//    .mat-expansion-panel-header
+//   {
+//     height:2.5rem
+//   }
+
+//    .mat-expansion-panel-header:hover
+//    {
+//     background-color: transparent;
+//     background: transparent !important;
+//     color:#7aa4d5;
+//     box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+//   }
+
+
+  @import '../app.component.scss';
+ 
+ .mat-expansion-panel-header,.mat-acordian,.mat-expansion-panel{
+    background-color: transparent;
+    background: transparent !important;
+    color:black !important;
+    // box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;    
+    //box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+    //box-shadow: inset rgb(110, 110, 110) 0px 2px 5px -1px, inset rgb(110, 110, 110) 0px 1px 3px -1px;
+    //box-shadow: inset 0px -6px 10px #013E5D,  0px 4px 15px  #013E5D;
+    //box-shadow: 9.91px 9.91px 15px #013E5D, -9.91px -9.91px 15px #015A85;
+  }
+
+   .mat-expansion-panel-header
+  {
+    height:2rem;
+    box-shadow: none;
+   
+  }
+
+   .mat-expansion-panel-header:hover
+   {
+    background-color: transparent;
+    background: $planton-green !important;
+    //color:$planton-green !important;
+    //box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+  }
+
+  ::ng-deep .mat-mdc-radio-button .mdc-form-field{
+    color:black !important;
+  }
+
+  ::ng-deep .mat-mdc-radio-button .mdc-form-field:hover{
+    color:$planton-green !important;
+  }
+
+  ::ng-deep .mat-expansion-indicator:after{
+    color:black !important;
+  }
+
+  .neoButton{
+    background: transparent;
+  }

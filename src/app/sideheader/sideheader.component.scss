@@ -1,0 +1,19 @@
+.sideHeader{
+    color:#EFF2FF;
+    background: #EFF2FF !important;
+    width:100%;
+  }
+  
+  .sideHeader>button {
+      display:none;
+  }
+  
+  .sideHeader:hover>button {
+      display:block;
+    color:#18570f;
+    
+  }
+  
+  .sideHeader:hover{
+    background: #EFF2FF;
+  }

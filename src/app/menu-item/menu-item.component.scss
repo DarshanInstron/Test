@@ -1,0 +1,83 @@
+
+// button themes
+
+.neoButton
+{
+    
+    border-radius: 10px;
+    border: none;
+    color:#1c2d61;
+    background-color: #ececec;
+    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.25);
+}
+    
+.neoButton:active
+{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+    color:#7aa4d5;
+}
+
+.neoButtonSuccess
+{
+    height:3rem;
+    width:8rem;
+    border-radius: 10px;
+    border: none;
+    font-weight:800 ;
+    color: #31ce36;
+    background-color: transparent;
+    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.25);
+}
+    
+.neoButtonSuccess:active
+{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+    font-weight:700 ;
+    background-color: #31ce36;
+    color: white;
+}
+
+.neoButtonDanger
+{
+    height:3rem;
+    width:8rem;
+    border-radius: 10px;
+    border: none;
+    font-weight:800 ;
+    color: #f25961;
+    background-color: transparent;
+    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.25);
+}
+    
+.neoButtonDanger:active
+{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+    font-weight:700 ;
+    color: white;
+    background-color: #f25961;
+}
+
+.neoButtonWarning
+{
+    height:3rem;
+    width:8rem;
+    border-radius: 10px;
+    border: none;
+    font-weight:800 ;
+    color: #ffad46;
+    background-color: transparent;
+    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.25);
+}
+    
+.neoButtonWarning:active
+{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+    font-weight:700 ;
+    color: black;
+    background-color: #ffad46;
+}
+
+
+// button themes
+
+

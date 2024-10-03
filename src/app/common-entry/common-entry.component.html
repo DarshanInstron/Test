@@ -1,0 +1,150 @@
+<div class="container-fluid" style="background: #EFF2FF;">
+
+  <app-fheader [pageName]="'Common Entry'" [isTreeview]="false"
+  style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px !important;"></app-fheader>
+<hr style="color: transparent;">
+
+<div style="display: flex;background:#EFF2FF;padding-left:15px" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+  <!-- header end-->
+  <br>
+
+<div class="content" style="width:97.5%;">
+  <div class="userCredentialDiv1">
+
+    <!-- form start -->
+    <form [formGroup]="myform">
+      <div class="row" style="align-items: center;justify-content: center">
+
+        <div class="col-md-4 ">
+          <label> Type </label>
+          <mat-select class="neoSelect" formControlName="CommonEntryTypeId"
+            (selectionChange)="GridViewCommonTableInfo()" [disabled]="disabled_CommonEntryType" placeholder="Select"
+            #singleSelect>
+            <mat-option class="neoOption">
+              <ngx-mat-select-search [formControl]="CommonEntryTypeFilterCtrl"
+                [placeholderLabel]="'Search'"></ngx-mat-select-search>
+            </mat-option>
+            <mat-option value="0"> Select </mat-option>
+            <mat-option class="neoOption" *ngFor="let CommonEntryType of filteredCommonEntryTypes | async"
+              [value]="CommonEntryType.Id">
+              {{CommonEntryType.Description}}
+            </mat-option>
+          </mat-select>
+        </div>
+
+        <div class="col-md-4 ">
+          <label>Description</label>
+          <input class="neoInput" matInput placeholder=" Description" name="Description" formControlName="Description"
+            required>
+        </div>
+
+        <div *ngIf="IsshowAct" class="col-md-2 ">
+          <mat-checkbox class="neoSelection" placeholder="Act" name="Act" formControlName="Act"
+            [(ngModel)]="ActChecked">Act</mat-checkbox>
+        </div>
+
+        <div *ngIf="IsshowAbb" class="col-md-4 ">
+          <label>Abb</label>
+          <input class="neoInput" matInput placeholder=" Abbreviation" name="Abbreviation"
+            formControlName="Abbreviation" required>
+        </div>
+
+      </div>
+    </form>
+    <!-- form end -->
+
+    <br><br>
+
+    <div class="col-md-12 " style="text-align:center ;">
+      <button class="neoButtonSuccess" type="submit" (click)="onClickInsertUpdateInfo()"
+        matTooltip="Save-Update">{{BtnSaveUpdateText}}</button>&nbsp;
+      <button class="neoButtonDanger" (click)="onClickClearInfo()" matTooltip="Clear">Clear</button>&nbsp;
+    </div>
+
+  </div>
+
+  <br />
+
+  <div class="userCredentialDiv2" *ngIf="IsshowGrid" style="padding: 0 5rem 0 5rem">
+
+    <!-- filter start -->
+    <div class="col-md-4 " class="filter">
+      <label>Filter</label><br>
+      <input class="neoInput" matInput style="width:25%" placeholder="search" autocomplete="off"
+        (keyup)="filterData($event)">
+    </div>
+    <!-- filter end -->
+
+    <div class="clearfix"></div>
+    <div class="help-block"></div>
+
+    <br><br>
+
+    <!-- Gridview start -->
+    <div class="table-padding">
+      <div class="example-container" class='table-responsive mat-elevation-z8'>
+        <mat-table [dataSource]="dataSource" matSort style="max-height: 35rem;overflow-y: scroll;">
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef class="table-actions"> Action </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = index" style="display: flex;justify-content: center;gap:1rem">
+              <button class="neoButtonSuccess" matTooltip="Edit" (click)="onClickEditInfo(row)" style="width:3rem">
+                <fa-icon [icon]="faPencil"></fa-icon>
+              </button>
+              <div class="col-md-1">&nbsp;</div>
+              <button class="neoButtonDanger" matTooltip="Delete" (click)="onClickDeleteInfo(row.Id)"
+                style="width:3rem">
+                <fa-icon [icon]="faTrash"></fa-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Id}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="CommonEntryType">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Table Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.CommonEntryTypeId}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="TableName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Table Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.TableName}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Description">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Description}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Act" *ngIf="CommonEntryTypeId == '5'">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Act</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Act}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Abbreviation" *ngIf="CommonEntryTypeId == '6'">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Abb</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Abb}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="CreateBy">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>CreateBy</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.CreateBy}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="CreateDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>CreateDate</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.CreateDate}} </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{alternate: row % 2 == 0 }"></mat-row>
+        </mat-table>
+      </div>
+    </div>
+    <!-- Gridview end -->
+
+    <div class="clearfix"></div>
+    <div class="help-block"></div>
+
+  </div>
+</div>  
+
+<app-sideheader style="width:2.5%"></app-sideheader>
+
+</div>
+<!-- footer -->
+<app-footer style="position: fixed;bottom: 0;right:0;left:0;"></app-footer>
+</div>

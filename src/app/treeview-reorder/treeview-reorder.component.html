@@ -1,0 +1,95 @@
+<app-header></app-header>
+
+<div class="row" [formGroup]="myform">
+    <div class="col-md-2" [ngStyle]="{'height': LeftSideTreeviewHeight}" style="background-color: #ececec;" style="overflow-y: scroll;">
+        <mat-select formControlName="LevelTypeInputs" placeholder="Select" #singleSelect (selectionChange)="GetLeftSideTreeDetailsDataSet()">
+            <mat-option value="a">A</mat-option>
+            <mat-option value="b">B</mat-option>
+            <mat-option value="c">C</mat-option>
+          </mat-select>
+        <mat-accordion lass="mat-table" *ngIf="objMultiLvlTreeviewInfoList.length>0" >
+            <mat-expansion-panel style="width:100%;" *ngFor="let objMultiLvlTreeviewInfo of objMultiLvlTreeviewInfoList">
+                <mat-expansion-panel-header (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo,'1')">
+                    <div >
+                        {{objMultiLvlTreeviewInfo.C003_LevelName}}
+                    </div>
+                </mat-expansion-panel-header>
+                <mat-accordion lass="mat-table" *ngIf="objMultiLvlTreeviewInfo.objMultiLvlTreeviewInfoList.length>0" >
+                    <mat-expansion-panel style="width:115%;margin-left:-1.3rem" *ngFor="let objMultiLvlTreeviewInfo1 of objMultiLvlTreeviewInfo.objMultiLvlTreeviewInfoList">
+                        <mat-expansion-panel-header (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo1,'2')">
+                            <div >
+                                {{objMultiLvlTreeviewInfo1.C003_LevelName}}
+                            </div>
+                        </mat-expansion-panel-header>
+                        <mat-accordion lass="mat-table" *ngIf="objMultiLvlTreeviewInfo1.objMultiLvlTreeviewInfoList.length>0" >
+                            <mat-expansion-panel style="width:115%;margin-left:-1.3rem" *ngFor="let objMultiLvlTreeviewInfo2 of objMultiLvlTreeviewInfo1.objMultiLvlTreeviewInfoList">
+                                <mat-expansion-panel-header (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo2,'3')">
+                                    <div >
+                                        {{objMultiLvlTreeviewInfo2.C003_LevelName}}
+                                    </div>
+                                </mat-expansion-panel-header>
+                                <mat-accordion lass="mat-table" *ngIf="objMultiLvlTreeviewInfo2.objMultiLvlTreeviewInfoList.length>0" >
+                                    <mat-expansion-panel style="width:115%;margin-left:-1.3rem" *ngFor="let objMultiLvlTreeviewInfo3 of objMultiLvlTreeviewInfo2.objMultiLvlTreeviewInfoList">
+                                        <mat-expansion-panel-header (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo3,'4')">
+                                            <div >
+                                                {{objMultiLvlTreeviewInfo3.C003_LevelName}}
+                                            </div>
+                                        </mat-expansion-panel-header>
+                                        <mat-accordion lass="mat-table" *ngIf="objMultiLvlTreeviewInfo3.objMultiLvlTreeviewInfoList.length>0" >
+                                            <mat-expansion-panel style="width:115%;margin-left:-1.3rem" *ngFor="let objMultiLvlTreeviewInfo4 of objMultiLvlTreeviewInfo3.objMultiLvlTreeviewInfoList">
+                                                <mat-expansion-panel-header (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo4,'5')">
+                                                    <div >
+                                                        {{objMultiLvlTreeviewInfo4.C003_LevelName}}
+                                                    </div>
+                                                </mat-expansion-panel-header>
+                                                <mat-accordion lass="mat-table" *ngIf="objMultiLvlTreeviewInfo4.objMultiLvlTreeviewInfoList.length>0" >
+                                                    <mat-expansion-panel style="width:115%;margin-left:-1.3rem" *ngFor="let objMultiLvlTreeviewInfo5 of objMultiLvlTreeviewInfo4.objMultiLvlTreeviewInfoList">
+                                                        <mat-expansion-panel-header (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo5,'6')">
+                                                            <div >
+                                                                {{objMultiLvlTreeviewInfo5.C003_LevelName}}
+                                                            </div>
+                                                        </mat-expansion-panel-header>
+                                                    </mat-expansion-panel>
+                                                </mat-accordion>
+                                            </mat-expansion-panel>
+                                        </mat-accordion>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+    <div class="col-md-10" [formGroup]="myform" [ngStyle]="{'height': LeftSideTreeviewHeight}" style="background-color: #ececec;" style="color:black !important;overflow-y: scroll;
+    background: rgb(0,30,97);
+    background: linear-gradient(0deg, rgba(0,30,97,1) 0%, rgba(123,164,221,1) 30%, rgba(254,254,254,1) 100%);">
+    <br>
+    <div class="userDefHeader">
+        <h1>TREEVIEW REORDER</h1>
+    </div>
+    <div style="display:flex;">
+        <div class="col-md-3">
+            <br>
+            <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of objMultiLvlTreeviewInfoList1" cdkDrag >{{item.C003_LevelName}}</div>
+            </div>
+        </div>
+        <div class="col-md-1">&nbsp;</div>
+        <div>
+            <br>
+            <button class="neoButtonSuccess" (click)="UpdateMultiLevelTreeViewByParametersnList()">Save</button>
+        </div>
+    </div>
+
+            <!-- <ul>
+                <li *ngFor="let objMultiLvlTreeviewInfo of objMultiLvlTreeviewInfoList1">
+                    <p>{{objMultiLvlTreeviewInfo.C001_LevelId}}</p>
+                </li>
+            </ul> -->
+         
+    </div>
+</div>
+<app-footer></app-footer>

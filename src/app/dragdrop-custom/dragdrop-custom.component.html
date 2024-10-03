@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<div class="row" [formGroup]="myform">
+    <div class="col-md-2" [ngStyle]="{'height': LeftSideTreeviewHeight}" style="background-color: #ececec;">
+      <app-leftsidetreeobj-wlimit (PassSelectedParamIds)="ChangeLeftSideTreeTagsSelection($event)"
+        (PassobjMultiLvlTreeviewInfo)="getKpiBoxDataByPlcNumberGatewayNoObjName($event)"
+        [LevelTypeInputs]="LevelTypePassToChild" [WithParameters]="WithParametersPassToChild"
+        [LevelUpToInputs]="LevelUpToPassToChild">
+      </app-leftsidetreeobj-wlimit>
+      <!-- <mat-expansion-panel-header>
+        <div (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo1,'1')">
+            {{objMultiLvlTreeviewInfo1.DescriptionName}}
+        </div>
+    </mat-expansion-panel-header> -->
+    </div>
+    <div class="col-md-10"
+        style="color:black !important;
+        background: rgb(0,30,97);
+        background: linear-gradient(0deg, rgba(0,30,97,1) 0%, rgba(123,164,221,1) 30%, rgba(254,254,254,1) 100%);height: 800px;" >
+        <br>
+        <div class="userDefHeader">
+            <h1>DRAGDROP-CUSTOM</h1>
+        </div>
+        <div style="margin-top: 20px; max-height: 500px; overflow: auto;">
+            <div cdkDropList (cdkDropListDropped)="drop($event)" class="a"
+                style="margin-bottom: 20px;display: flex;gap:2rem;flex-wrap: wrap;">
+                <div class="col-md-3" style="border:1px solid black;text-align: center;background-color:#ffffff"
+                    cdkDrag *ngFor="let objTagInDetailsInfoInfo of tempObjTagInDetailsInfoList ; let i = index">
+                    <i class="fa fa-window-close" aria-hidden="true"
+                        style="float:right;cursor: pointer;margin-right:2px"
+                        (click)="removeTagFromArr(objTagInDetailsInfoInfo)"></i>
+                    <h4 class="textChild">{{objTagInDetailsInfoInfo.C003_LevelName}}</h4>
+                </div>
+            </div>
+            <!-- <button class="btn btn-success" *ngIf="tempObjTagInDetailsInfoList.length>0"
+                (click)="InsertUpdateCustomEditorTblInfo()">{{BtnSaveUpdateText}}
+            </button> -->
+        </div>
+        <div class="col-md-3" style="margin:auto;">
+            <br>
+
+            <button class="neoButtonWarning" (click)="SetnShowSelectedTagIdClick(selectedTags)">save</button>
+            &nbsp;
+            
+        </div>
+
+    </div>
+</div>
+<app-footer style="position: fixed;bottom: 0;right:0;left:0;"></app-footer>

@@ -1,0 +1,89 @@
+
+<div class="col-md-12" style="background-color: #EFF2FF;display: flex;justify-content: center;height:auto;flex-wrap: wrap;align-items: center;
+box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;">
+
+  <div class="col-md-4" style="display: flex;align-items: center;gap:1rem">
+
+    <img src="assets/images/PlantON Logo.png" style="height:1.5rem;">
+    <div style="display: flex;align-items: center;gap:0.5rem">
+      <fa-icon [icon]="faBars" size="2xl" [style.color]="'grey'" [style.cursor]="'pointer'" (click)="snav.toggle()" *ngIf="isTreeview == true" ></fa-icon>
+    <h2 style="font-weight: 700;color:rgb(91, 91, 91);margin-top: 0.8rem;">{{pageName}} <span *ngIf="subTitle!='' ">- {{subTitle}}</span></h2>
+    </div>
+
+  </div>
+
+
+  <div class="col-md-6" ></div>
+
+  <div class="col-md-1" style="display: flex;justify-content: flex-end;padding-right:2rem;">
+    <b class="hover-text" *ngIf="showCountDown">
+      <span style="color:red;font-weight: 650;margin-left:0.15rem">&#x26A0;</span><br>
+      <span style="color:red;font-weight: 650;font-size: 1rem;">{{countdown}}</span>
+    </b>
+
+    
+    <!-- <button mat-flat-button [matMenuTriggerFor]="menu1"
+      style="display:flex;justify-content: center;height:1.3rem;width:1.3rem;margin-right:-1.6rem;margin-top:0.2rem">
+      <fa-icon [icon]="faBell"></fa-icon>
+    </button>
+    <b style="color:red;font-weight: 750;margin:-0.8rem -6rem 0 0;">{{alarm}}</b> -->
+
+    <mat-menu #menu1="matMenu"
+      style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+      <div
+        style="overflow-y: scroll;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
+        <div class="wave-header"
+          style="display:flex;justify-content: space-between;padding:0.8rem;background: #daf3dc;">
+          <h2 >Active Alarms</h2>
+        </div>
+
+        <div>
+          <table>
+            <tr *ngFor="let alarm of alarmList1">
+              <div Style="display: flex; padding:0.5rem;gap:1rem">
+                <div style="line-height: 0.2rem;margin-top:0.3rem">
+                  <p class="darkText" style="font-size: 14px;">{{alarm.micname}}</p>
+                  <p  style="margin-top:1.3rem;font-size: 13px;color:#013E5D">{{alarm.pname}}</p>
+                  <p class="lightText" style="font-size: 11.5px;">{{alarm.time}}</p>
+                </div>
+                <div *ngIf="alarm.msg == 'HighAlmSp'" style="align-items: center;">
+                  <p  style="font-size: 14px;color:red">{{alarm.msg}}</p>
+                </div>
+                <div *ngIf="alarm.msg == 'LowAlmSp'" style="align-items: center;">
+                  <p  style="font-size: 14px;color:rgb(255, 153, 0)">{{alarm.msg}}</p>
+                </div>
+              </div>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </mat-menu>
+  </div>
+  <div class="col-md-1" style="margin-bottom:0.5%;display:flex;margin-left:-2rem;justify-content: right;align-items: center;">
+
+    <mat-icon matBadge={{alarm}} [matMenuTriggerFor]="menu1" matBadgeColor="warn" >notifications</mat-icon>
+    <button mat-button [matMenuTriggerFor]="profile"  >
+      <fa-icon [icon]="faUser" size="xl"></fa-icon>
+    </button>
+
+<mat-menu #profile="matMenu" yPosition="below">
+<div style="background: #daf3dc;line-height: 0.6rem;margin-top:-7px;padding:0.4rem 0 0.03rem 0.4rem;">
+  <p class="darkText" style="font-size: 14px;">Sumit123</p>
+  <p class="lightText" style="font-size: 11.5px;">Incharge</p>
+</div>
+<p class="primaryText" style="font-size: 11.5px;color:#013E5D">Welcome Sumit</p>
+<button mat-menu-item [matMenuTriggerFor]="Settings" style="width:100%">Settings</button>
+<button mat-menu-item routerLink="/login" style="width:100%">Logout</button>
+</mat-menu>
+
+<mat-menu #Settings="matMenu">
+<button mat-menu-item routerLink="/trendsetting">Trend Setting</button>
+<button mat-menu-item routerLink="/kpisetting">KPI Setting</button>
+<button mat-menu-item routerLink="/commonsetting">Common Setting</button>
+</mat-menu>
+
+
+  </div>
+
+</div>

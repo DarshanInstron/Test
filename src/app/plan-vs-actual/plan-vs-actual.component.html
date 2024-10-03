@@ -1,0 +1,148 @@
+<div class="container-fluid" style="background: #EFF2FF;">
+
+    <app-fheader [pageName]="'PlanVsActual'" [isTreeview]="false"
+        style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px !important;"></app-fheader>
+    <hr style="color: transparent;">
+
+    <div style="display: flex;background:#EFF2FF;padding-left:15px" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+
+        <!-- header end-->
+
+        <div class="content" style="width:97.5%;">
+            <div class="item">
+                <div class="userDefHeader" style="background: #daf3dc;margin-top:0.5rem">
+                    <h1 style="color:#1c2d61">PERFORMANCE INDICATORS</h1>
+                </div>
+                <br><br>
+                <div class="item-circle">
+                    <circle-progress [percent]=OEE [radius]="80" [outerStrokeWidth]="11" [innerStrokeWidth]="0"
+                        [outerStrokeColor]=OEEColor [animation]="true" [animationDuration]="600" [showUnits]="true"
+                        [showTitle]="true" [showUnits]="true" [imageHeight]="140" [showSubtitle]="true" subtitle="OEE"
+                        subtitleFontSize="18" titleFontSize="26" unitsFontSize="20" [responsive]=true>
+                    </circle-progress>
+                    <circle-progress [percent]=A [radius]="80" [outerStrokeWidth]="11" [innerStrokeWidth]="0"
+                        [outerStrokeColor]=AColor [animation]="true" [animationDuration]="600" [showUnits]="true"
+                        [showTitle]="true" [showUnits]="true" [imageHeight]="140" subtitle="AVAILABILITY"
+                        subtitleFontSize="18" titleFontSize="26" unitsFontSize="20" [responsive]=true>
+                    </circle-progress>
+                    <circle-progress [percent]=P [radius]="80" [outerStrokeWidth]="11" [innerStrokeWidth]="0"
+                        [outerStrokeColor]=PColor [animation]="true" [animationDuration]="600" [showUnits]="true"
+                        [showTitle]="true" [showUnits]="true" [imageHeight]="140" subtitle="PERFORMANCE"
+                        subtitleFontSize="18" titleFontSize="26" unitsFontSize="20" [responsive]=true>
+                    </circle-progress>
+                    <circle-progress [percent]=Q [radius]="80" [outerStrokeWidth]="11" [innerStrokeWidth]="0"
+                        [outerStrokeColor]=QColor [animation]="true" [animationDuration]="600" [showUnits]="true"
+                        [showTitle]="true" [showUnits]="true" [imageHeight]="140" subtitle="QUALITY"
+                        subtitleFontSize="18" titleFontSize="26" unitsFontSize="20" [responsive]=true>
+                    </circle-progress>
+                </div>
+            </div>
+            <div class="item">
+
+                <div class="userDefHeader" style="background: #daf3dc;margin-top:0.5rem">
+                    <h1 style="color:#1c2d61">KPI</h1>
+                </div>
+
+                <div
+                    style="display: flex;gap:1rem;flex-wrap: wrap;margin-left:0.5rem;overflow-y: scroll;height:85%;margin-top:0.5rem;justify-content: center;">
+                    <div class="wave-header kpicardParent col-3" class="kpicard-{{i}}"
+                        style="transition: transform 0.3s ease-in-out;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'"
+                        *ngFor="let objTagInDetailsInfo of objTagInDetailsInfoList  let i = index">
+
+                        <div class="kpiCardHeader">
+                            <p class="kpiCardHeaderChild">{{objTagInDetailsInfo.TagName}} <span
+                                    *ngIf="objTagInDetailsInfo.TagUnitName!=''">({{objTagInDetailsInfo.TagUnitName}})</span>
+                            </p>
+                        </div>
+                        <hr>
+                        <div class="kpiCardContent">
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-6">
+                                    <h2 *ngIf="objTagInDetailsInfo.TagValueColor=='0'" style="color: black;">
+                                        {{objTagInDetailsInfo.TagValue}}</h2>
+                                    <h2 *ngIf="objTagInDetailsInfo.TagValueColor=='1'" style="color: red;">
+                                        {{objTagInDetailsInfo.TagValue}}</h2>
+                                    <h2 *ngIf="objTagInDetailsInfo.TagValueColor=='2'" style="color: yellow;">
+                                        {{objTagInDetailsInfo.TagValue}}</h2>
+                                </div>
+                                <div class="col-md-6" class="col-md-6 boxdetailimgparent">
+                                    <img src="{{objTagInDetailsInfo.TagImageUrl}}" style="float:right;"
+                                        class="boxdetailimgchild">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="userDefHeader" style="background: #daf3dc;margin-top:0.5rem">
+                    <h1 style="color:#1c2d61">MACHINE STATS</h1>
+                </div>
+                <br><br>
+                <div style="display: flex;flex-direction: column;justify-content: center;gap:5rem">
+                    <table class="neomorphic-table">
+                        <thead>
+                            <tr class="neomorphic-table tr">
+                                <th class="neomorphic-table th">Planned</th>
+                                <th class="neomorphic-table th">Actual</th>
+                                <th class="neomorphic-table th">Rejection</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr class="neomorphic-table tr">
+                                <td class="neomorphic-table td">{{Planned}}</td>
+                                <td class="neomorphic-table td">{{Actual}}</td>
+                                <td class="neomorphic-table td">{{Rejection}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- <br><br><br> -->
+                    <table class="neomorphic-table">
+                        <thead>
+                            <tr class="neomorphic-table tr">
+                                <th class="neomorphic-table th">Down Time</th>
+                                <th class="neomorphic-table th">Cycle Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr class="neomorphic-table tr">
+                                <td class="neomorphic-table td">{{DownTime}}</td>
+                                <td class="neomorphic-table td">{{CycleTime}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="item">
+                <div class="userDefHeader" style="background: #daf3dc;margin-top:0.5rem">
+                    <h1 style="color:#1c2d61">PRODUCTION TREND</h1>
+                </div>
+                <div style="display: flex;justify-content: center;margin-top:0.5rem;gap:2rem">
+                    <tr *ngFor="let objTrendLegendInfo of objTrendLegendInfoList; let i = index">
+                        <td style="display:flex;justify-content:center;">
+
+                            <input disabled [style.background]="objTrendLegendInfo.LineColor"
+                                [style.border]="objTrendLegendInfo.LineColor"
+                                style="border-radius: 50%;width:1rem;height:1rem;outline:none;cursor: pointer;">
+                        </td>
+                        <td>
+                            {{objTrendLegendInfo.TagName}}
+                        </td>
+                    </tr>
+                </div>
+
+                <div id="chartContainer" style="height: 16rem; width: 90%; margin:auto;"></div>
+                <br>
+            </div>
+        </div>
+
+        <app-sideheader style="width:2.5%"></app-sideheader>
+
+    </div>
+    <app-footer style="position: fixed;bottom: 0;right:0;left:0;"></app-footer>
+
+</div>

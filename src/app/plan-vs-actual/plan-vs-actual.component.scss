@@ -1,0 +1,135 @@
+@import "../app.component.scss";
+
+::ng-deep #chartContainer{
+  background: #daf3dc !important;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px; /* Adjust the gap as needed */
+    margin-top: 10px;
+}
+.item {
+    background: transparent; /* Background color for the child divs */
+    box-shadow:inset 2px -4px 8px rgba(0, 0, 0, 0.15), inset 2px 4px 8px  rgba(0, 0, 0, 0.15) !important;
+    height: 360px;
+}
+
+.item-circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:2rem
+}
+
+table{
+
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.userDefHeader{
+    background:transparent;
+}
+
+.kpiCardHeader > p {
+    font-size: 0.7vw;
+    font-weight: 700;
+    padding-top: 0.5rem;
+    // left: -35px;
+    top: 3px;
+    
+}
+
+.kpicardParent{
+    position:relative;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+li 
+{   
+    color:black !important;
+}
+
+
+//hide scrollbar
+/* For WebKit based browsers (Chrome, Safari) */
+/* Hide scrollbar track */
+::-webkit-scrollbar {
+    width: 8px; /* Adjust the width as needed */
+    background-color: transparent; /* Hide the track */
+  }
+  
+  /* Hide scrollbar thumb */
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Hide the thumb */
+  }
+  
+  /* For Firefox */
+  /* Hide scrollbar track */
+  .scrollbar-track {
+    width: 8px; /* Adjust the width as needed */
+    background-color: transparent; /* Hide the track */
+  }
+  
+  /* Hide scrollbar thumb */
+  .scrollbar-thumb {
+    background-color: transparent; /* Hide the thumb */
+  }
+
+  
+  //hide scrollbar
+
+
+  .neomorphic-table {
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    border-radius: 10px;
+  }
+  
+  .neomorphic-table th,
+  .neomorphic-table td {
+    padding: 0 16px;
+    text-align: center;
+    height:2.2rem;
+  }
+  
+  .neomorphic-table th {
+    background-color: #ecf9ed;
+    border-bottom: 1px solid #ccc;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+  
+  .neomorphic-table td {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+ 
+  }
+
+  .neomorphic-table tr{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+  }
+
+
+  .wave-header::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('wave.svg');
+    background-size: cover;
+    z-index: -1;
+  }
+  
+  .wave-header h1,
+  .wave-header p {
+    position: relative;
+    z-index: 1;
+    /* Add any additional styles you need */
+  }

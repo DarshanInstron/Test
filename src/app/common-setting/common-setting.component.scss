@@ -1,0 +1,19 @@
+@import '../app.component.scss';
+.sideHeader{
+    color:#f2faff;
+    background: #f2faff !important;
+  }
+  
+  .sideHeader>div {
+      display:none;
+  }
+  
+  .sideHeader:hover>div {
+      display:block;
+    color:#18570f;
+   
+  }
+  
+  .sideHeader:hover{
+    background: #f2faff;
+  }

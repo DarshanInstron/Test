@@ -1,0 +1,165 @@
+<button class="neoButton" (click)="UncheckAllorSelectedParamters('0','1',false)">Clear all checkboxes</button>
+<br><br>
+<mat-accordion multi class="mat-table" style="height:100%">
+    <mat-accordion lass="mat-table">
+        <mat-expansion-panel *ngFor="let objMultiLvlTreeviewInfo of objMultiLvlTreeviewInfoList">
+            <mat-expansion-panel-header class="mat-row">
+                <span class="mat-cell">{{objMultiLvlTreeviewInfo.C003_LevelName}}</span>
+            </mat-expansion-panel-header>
+            <div *ngFor="let objMultiLvlTreeviewInfo1 of objMultiLvlTreeviewInfo.objMultiLvlTreeviewInfoList">
+                <div *ngIf="objMultiLvlTreeviewInfo1.objMultiLvlTreeviewInfoList.length>0">
+                    <mat-accordion lass="mat-table">
+                        <mat-expansion-panel style="width:120%;margin-left:-1.5rem">
+                            <mat-expansion-panel-header>
+                                <div>{{objMultiLvlTreeviewInfo1.C003_LevelName}} </div>
+                            </mat-expansion-panel-header>
+                            <div
+                                *ngFor="let objMultiLvlTreeviewInfo2 of objMultiLvlTreeviewInfo1.objMultiLvlTreeviewInfoList">
+                                <div *ngIf="objMultiLvlTreeviewInfo2.objMultiLvlTreeviewInfoList.length>0">
+                                    <mat-accordion lass="mat-table">
+                                        <mat-expansion-panel style="width:110%;margin-left:-1.5rem">
+                                            <mat-expansion-panel-header>
+                                                <div>{{objMultiLvlTreeviewInfo2.C003_LevelName}} </div>
+                                            </mat-expansion-panel-header>
+                                            <div
+                                                *ngFor="let objMultiLvlTreeviewInfo3 of objMultiLvlTreeviewInfo2.objMultiLvlTreeviewInfoList">
+                                                <div
+                                                    *ngIf="objMultiLvlTreeviewInfo3.objMultiLvlTreeviewInfoList.length>0">
+                                                    <mat-accordion lass="mat-table">
+                                                        <mat-expansion-panel style="width:120%;margin-left:-1.5rem">
+                                                            <mat-expansion-panel-header>
+                                                                <div>{{objMultiLvlTreeviewInfo3.C003_LevelName}} </div>
+                                                            </mat-expansion-panel-header>
+                                                            <div
+                                                                *ngFor="let objMultiLvlTreeviewInfo4 of objMultiLvlTreeviewInfo3.objMultiLvlTreeviewInfoList">
+                                                                <div
+                                                                    *ngIf="objMultiLvlTreeviewInfo4.objMultiLvlTreeviewInfoList.length>0">
+                                                                    <mat-accordion lass="mat-table">
+                                                                        <mat-expansion-panel
+                                                                            style="width:120%;margin-left:-1.5rem">
+                                                                            <mat-expansion-panel-header>
+                                                                                <div>
+                                                                                    {{objMultiLvlTreeviewInfo4.C003_LevelName}}
+                                                                                </div>
+                                                                            </mat-expansion-panel-header>
+                                                                            <div
+                                                                                *ngFor="let objMultiLvlTreeviewInfo5 of objMultiLvlTreeviewInfo4.objMultiLvlTreeviewInfoList">
+                                                                                <div
+                                                                                    *ngIf="objMultiLvlTreeviewInfo5.objMultiLvlTreeviewInfoList.length>0">
+                                                                                    <mat-accordion lass="mat-table">
+                                                                                        <mat-expansion-panel
+                                                                                            style="width:120%;margin-left:-1.5rem">
+                                                                                            <mat-expansion-panel-header>
+                                                                                                <div>
+                                                                                                    {{objMultiLvlTreeviewInfo5.C003_LevelName}}
+                                                                                                </div>
+                                                                                            </mat-expansion-panel-header>
+                                                                                            <div
+                                                                                                *ngFor="let objMultiLvlTreeviewInfo6 of objMultiLvlTreeviewInfo5.objMultiLvlTreeviewInfoList">
+                                                                                                <div
+                                                                                                    *ngIf="objMultiLvlTreeviewInfo6.objMultiLvlTreeviewInfoList.length>0">
+                                                                                                    <mat-accordion
+                                                                                                        lass="mat-table">
+                                                                                                        <mat-expansion-panel
+                                                                                                            style="width:110%;margin-left:-1.5rem">
+                                                                                                            <mat-expansion-panel-header>
+                                                                                                                <div>
+                                                                                                                    {{objMultiLvlTreeviewInfo6.C003_LevelName}}
+                                                                                                                </div>
+                                                                                                            </mat-expansion-panel-header>
+                                                                                                        </mat-expansion-panel>
+                                                                                                    </mat-accordion>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    *ngIf="objMultiLvlTreeviewInfo6.objMultiLvlTreeviewInfoList.length<1">
+                                                                                                    <mat-checkbox
+                                                                                                        (change)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo6)"
+                                                                                                        [(ngModel)]="objMultiLvlTreeviewInfo6.isChecked"
+                                                                                                        color="primary">
+                                                                                                        <div>
+                                                                                                            {{objMultiLvlTreeviewInfo6.C003_LevelName}}
+                                                                                                        </div>
+                                                                                                    </mat-checkbox>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </mat-expansion-panel>
+                                                                                    </mat-accordion>
+                                                                                </div>
+                                                                                <div
+                                                                                    *ngIf="objMultiLvlTreeviewInfo5.objMultiLvlTreeviewInfoList.length<1">
+                                                                                    <mat-checkbox
+                                                                                        (change)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo5)"
+                                                                                        [(ngModel)]="objMultiLvlTreeviewInfo5.isChecked"
+                                                                                        color="primary">
+                                                                                        <div>
+                                                                                            {{objMultiLvlTreeviewInfo5.C003_LevelName}}
+                                                                                        </div>
+                                                                                    </mat-checkbox>
+                                                                                </div>
+                                                                            </div>
+                                                                        </mat-expansion-panel>
+                                                                    </mat-accordion>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="objMultiLvlTreeviewInfo4.objMultiLvlTreeviewInfoList.length<1">
+                                                                    <mat-checkbox
+                                                                        (change)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo4)"
+                                                                        [(ngModel)]="objMultiLvlTreeviewInfo4.isChecked"
+                                                                        color="primary">
+                                                                        <div>{{objMultiLvlTreeviewInfo4.C003_LevelName}}
+                                                                        </div>
+                                                                    </mat-checkbox>
+                                                                </div>
+                                                            </div>
+                                                        </mat-expansion-panel>
+                                                    </mat-accordion>
+                                                </div>
+                                                <div
+                                                    *ngIf="objMultiLvlTreeviewInfo3.objMultiLvlTreeviewInfoList.length<1">
+                                                    <mat-checkbox
+                                                        (change)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo3)"
+                                                        [(ngModel)]="objMultiLvlTreeviewInfo3.isChecked"
+                                                        color="primary">
+                                                        <div>{{objMultiLvlTreeviewInfo3.C003_LevelName}}</div>
+                                                    </mat-checkbox>
+                                                </div>
+                                            </div>
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div>
+                                <div *ngIf="objMultiLvlTreeviewInfo2.objMultiLvlTreeviewInfoList.length<1">
+                                    <mat-checkbox
+                                        (change)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo2)"
+                                        [(ngModel)]="objMultiLvlTreeviewInfo2.isChecked" color="primary">
+                                        <div>{{objMultiLvlTreeviewInfo2.C003_LevelName}}</div>
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+                <div *ngIf="objMultiLvlTreeviewInfo1.objMultiLvlTreeviewInfoList.length<1">
+                    <mat-checkbox
+                        (change)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo1)"
+                        [(ngModel)]="objMultiLvlTreeviewInfo1.isChecked" color="primary">
+                        <div>{{objMultiLvlTreeviewInfo1.C003_LevelName}}</div>
+                    </mat-checkbox>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</mat-accordion>
+
+<style>
+    .mat-expansion-panel-body {
+        padding-left: 5px !important;
+        padding-right: 0px !important;
+        padding-top: 0px !important;
+        padding-bottom: 5px !important;
+    }
+</style>
+
+<!-- <mat-checkbox (change)="ShowKpiBoxesInfoByObjectClick(objTagInDetailsInfo.UniqueId,objTagInDetailsInfo.isChecked)"
+    [(ngModel)]="objTagInDetailsInfo.isChecked">
+    <div>{{objTagInDetailsInfo.TagName}}</div>
+</mat-checkbox> -->

@@ -1,0 +1,126 @@
+
+<div class="container-fluid" style="display:flex;">
+    <div class="col-md-2"  style="background: linear-gradient(to top, #ecf9ed 0%, #f2faff 100%);padding-top:0.5rem">
+        <app-kpitreeviewwithlimit (KpiTreeviewObjectData)="getKpiBoxDataByPlcNumberGatewayNoObjName($event)"
+        [LevelTypeInputs]="LevelTypePassToChild" [LevelUpToInputs]="LevelUpToPassToChild" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+    </app-kpitreeviewwithlimit>
+    <mat-expansion-panel *ngIf="objLeftSideTagInDetailsInfoListTemp.length>0">
+        <mat-expansion-panel-header class="mat-row">
+            <span class="mat-cell">Tag Names</span>
+        </mat-expansion-panel-header>
+        <div *ngFor="let objTagInDetailsInfo of objLeftSideTagInDetailsInfoListTemp">
+            <mat-checkbox [(ngModel)]="objTagInDetailsInfo.isChecked">
+                <div>{{objTagInDetailsInfo.TagName}}</div>
+            </mat-checkbox>
+        </div>
+    </mat-expansion-panel>
+
+    </div>
+    <div class="col-md-10" *ngIf="IsWaitingOn" style="color:black !important;background:#f2faff">
+
+        <app-loader style="position:absolute;left:50%;top:50%"></app-loader>
+
+    </div>
+    <div class="col-md-10" *ngIf="!IsWaitingOn" >
+        <app-fheadertrial  [pageName]="'KPI PAGE'" [subTitle]="TempHeaderTitle" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px !important;"></app-fheadertrial>
+        <hr style="margin-top:-0.8rem">
+        <div style="display: flex;background:#f2faff;margin-top:-0.3rem" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+            <div style="width:97%">
+                <div style="display: flex;gap:3rem;flex-wrap: wrap;justify-content: center;padding-top:2rem">
+                   
+                    <div class="wave-header kpicardParent" class="kpicard-{{i}}" [ngClass]="KpiBoxBoxWidth"
+                                [ngStyle]="{'height': KpiBoxBoxHeight}" style="transition: transform 0.3s ease-in-out;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'"
+                                *ngFor="let objTagInDetailsInfo of objTagInDetailsInfoList | paginate : { itemsPerPage: KpiBoxBoxesPerPage, currentPage: page, totalItems: count}; let i = index">
+        
+                                <div class="kpiCardHeader">
+                                    <p class="kpiCardHeaderChild">{{objTagInDetailsInfo.TagName}} <span
+                                            *ngIf="objTagInDetailsInfo.TagUnitName!=''">({{objTagInDetailsInfo.TagUnitName}})</span>
+                                    </p>
+                                </div>
+                                <hr>
+                                <div class="kpiCardContent">
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-md-6">
+                                            <h2 [ngStyle]="{'font-size': KpiBoxValueFontSize}"
+                                                *ngIf="objTagInDetailsInfo.TagValueColor=='0'" style="color: black;">
+                                                {{objTagInDetailsInfo.TagValue}}</h2>
+                                            <h2 [ngStyle]="{'font-size': KpiBoxValueFontSize}"
+                                                *ngIf="objTagInDetailsInfo.TagValueColor=='1'" style="color: red;">
+                                                {{objTagInDetailsInfo.TagValue}}</h2>
+                                            <h2 [ngStyle]="{'font-size': KpiBoxValueFontSize}"
+                                                *ngIf="objTagInDetailsInfo.TagValueColor=='2'" style="color: yellow;">
+                                                {{objTagInDetailsInfo.TagValue}}</h2>
+                                        </div>
+                                        <div class="col-md-6" class="col-md-6 boxdetailimgparent">
+                                            <img src="{{objTagInDetailsInfo.TagImageUrl}}"
+                                                [ngStyle]="{'height': KpiBoxBoxIconHeight, 'width': KpiBoxBoxIconWidth}"
+                                                style="float:right;" class="boxdetailimgchild">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+                <br>
+                <div class="d-flex justify-content-center" *ngIf="objTagInDetailsInfoList.length>0" style="color:white">
+                    <a style="padding-top: 5px;cursor: pointer;" (click)="onTableDataChange(1)"
+                        [ngStyle]="{'color':page === 1 ? '#cacdd3' : 'black' }"><i
+                            style="font-style: normal;">&#10074;&#11164;</i> First</a>
+                    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)"
+                        style="color:white">
+                    </pagination-controls>
+                    <a style="padding-top: 5px;cursor: pointer;" (click)="onTableDataChange(-2)"
+                        [ngStyle]="{'color':page === TempPage ? '#cacdd3' : 'black' }">Last <i
+                            style="font-style: normal;">&#10148;&#10074;</i></a>
+                </div>
+            </div>
+            <div class="sideHeader " [ngStyle]="{'height': LeftSideTreeviewHeight}" style="width:2.5%">
+                <br>
+            <div matTooltip="Production Dashboard" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+              <button mat-icon-button routerLink="/dashboardnew">
+                <fa-icon [icon]="faGears" size="2xl"></fa-icon>
+              </button>
+            </div>
+            <br>
+            <div matTooltip="EMS Dashboard" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+              <button mat-icon-button routerLink="/emsdashboard">
+                <fa-icon [icon]="faAtom" size="2xl"></fa-icon>
+              </button>
+            </div>
+            <br>
+            <div matTooltip="KPI" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+              <button mat-icon-button routerLink="/kpipage">
+                <fa-icon [icon]="faK" size="2xl"></fa-icon>
+              </button>
+            </div>
+            <br>
+            <div matTooltip="Trend" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+              <button mat-icon-button routerLink="/trendpage">
+                <fa-icon [icon]="faChartSimple" size="2xl"></fa-icon>
+              </button>
+            </div>
+            <br>
+            <div matTooltip="Custom Reports" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+              <button mat-icon-button routerLink="/customreport">
+                <fa-icon [icon]="faR" size="2xl" ></fa-icon>
+              </button>
+            </div>
+            <br>
+            <div matTooltip="Custom Reports" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+                <button mat-icon-button routerLink="/userdefination">
+                  <fa-icon [icon]="faUserPlus" size="2xl" ></fa-icon>
+              </button>
+              </div>
+              <br>
+              <div matTooltip="Custom Reports" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+                <button mat-icon-button routerLink="/manualentry">
+                  <fa-icon [icon]="faM" size="2xl" ></fa-icon>
+              </button>
+              </div>
+            ....
+            </div>
+        </div>
+        <app-footer style="position: fixed;bottom: 0;right:0;left:0;"></app-footer>
+    </div>
+</div>

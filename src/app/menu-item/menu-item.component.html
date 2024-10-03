@@ -1,0 +1,17 @@
+<mat-menu #childMenu="matMenu" [overlapTrigger]="false" >
+    <span  *ngFor="let objMenuInfo of items" >
+      <span *ngIf="objMenuInfo.objMenuInfoList && objMenuInfo.objMenuInfoList.length > 0">
+        <button class="neoButton" [matMenuTriggerFor]="menu.childMenu">
+          
+          <fa-icon [icon]="faChevronDown">{{objMenuInfo.IconName}}</fa-icon>
+          <span>{{objMenuInfo.DescriptionName}}</span>
+        </button>
+        <app-menu-item #menu [items]="objMenuInfo.objMenuInfoList"></app-menu-item>
+      </span>
+      <span *ngIf="!objMenuInfo.objMenuInfoList || objMenuInfo.objMenuInfoList.length == 0" style="display:flex;flex-direction: column;gap:1rem;">
+        <button class="neoButton" style="height:2.5rem;word-wrap: break-word;"  (click)="CheckIsCustomPageUrlOrNot(objMenuInfo)">
+          <span>{{objMenuInfo.DescriptionName}}</span>
+        </button>
+      </span>
+    </span>
+  </mat-menu>

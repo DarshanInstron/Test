@@ -1,0 +1,41 @@
+@import '../app.component.scss';
+
+*{
+      font-weight: 540;
+      color:black
+   }
+
+    .neoButton{
+        width:6rem;
+        font-size: 0.80rem;
+        background-color: #EFF2FF;
+    }
+      
+      .bottom {
+        top:25px;
+        left: -50%;
+      }
+
+      .neomorphic-table{
+        margin:1rem
+    }
+    
+    tr{
+        box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+       
+    }
+    
+    tr:hover{
+        background: $dark-bg-color;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+
+    fa-icon{
+        color:#18570f;
+    }
+
+    .mat-icon{
+        color:#18570f;
+    }
+    
+      

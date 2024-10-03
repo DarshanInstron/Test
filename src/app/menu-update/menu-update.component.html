@@ -1,0 +1,181 @@
+<app-header></app-header>
+
+<div class="row" [formGroup]="myform">
+    <div class="col-md-2" [ngStyle]="{'height': LeftSideTreeviewHeight}" style="background-color: #ececec;">
+        <!-- <mat-select formControlName="LevelTypeInputs" placeholder="Select" #singleSelect
+            (selectionChange)="GetLeftSideTreeDetailsDataSet()">
+            <mat-option value="a">A</mat-option>
+
+        </mat-select> -->
+        <mat-accordion lass="mat-table" *ngIf="objMenuInfoList.length>0">
+            <mat-expansion-panel style="width:100%;" *ngFor="let objMultiLvlTreeviewInfo of objMenuInfoList">
+                <mat-expansion-panel-header>
+                    <div (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo,'1')">
+                        {{objMultiLvlTreeviewInfo.DescriptionName}}
+                    </div>
+                </mat-expansion-panel-header>
+                <mat-accordion lass="mat-table" *ngIf="objMultiLvlTreeviewInfo.objMenuInfoList.length>0">
+                    <mat-expansion-panel style="width:120%;margin-left:-1.3rem"
+                        *ngFor="let objMultiLvlTreeviewInfo1 of objMultiLvlTreeviewInfo.objMenuInfoList">
+                        <mat-expansion-panel-header>
+                            <div (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo1,'1')">
+                                {{objMultiLvlTreeviewInfo1.DescriptionName}}
+                            </div>
+                        </mat-expansion-panel-header>
+                        <mat-accordion lass="mat-table" *ngIf="objMultiLvlTreeviewInfo1.objMenuInfoList.length>0">
+                            <mat-expansion-panel style="width:120%;margin-left:-1.3rem"
+                                *ngFor="let objMultiLvlTreeviewInfo2 of objMultiLvlTreeviewInfo1.objMenuInfoList">
+                                <mat-expansion-panel-header>
+                                    <div (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo2,'1')">
+                                        {{objMultiLvlTreeviewInfo2.DescriptionName}}
+                                    </div>
+                                </mat-expansion-panel-header>
+                                <mat-accordion lass="mat-table"
+                                    *ngIf="objMultiLvlTreeviewInfo2.objMenuInfoList.length>0">
+                                    <mat-expansion-panel style="width:120%;margin-left:-1.3rem"
+                                        *ngFor="let objMultiLvlTreeviewInfo3 of objMultiLvlTreeviewInfo2.objMenuInfoList">
+                                        <mat-expansion-panel-header>
+                                            <div (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo3,'1')">
+                                                {{objMultiLvlTreeviewInfo3.DescriptionName}}
+                                            </div>
+                                        </mat-expansion-panel-header>
+                                        <mat-accordion lass="mat-table"
+                                            *ngIf="objMultiLvlTreeviewInfo3.objMenuInfoList.length>0">
+                                            <mat-expansion-panel style="width:120%;margin-left:-1.3rem"
+                                                *ngFor="let objMultiLvlTreeviewInfo4 of objMultiLvlTreeviewInfo3.objMenuInfoList">
+                                                <mat-expansion-panel-header>
+                                                    <div
+                                                        (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo4,'1')">
+                                                        {{objMultiLvlTreeviewInfo4.DescriptionName}}
+                                                    </div>
+                                                </mat-expansion-panel-header>
+                                                <mat-accordion lass="mat-table"
+                                                    *ngIf="objMultiLvlTreeviewInfo4.objMenuInfoList.length>0">
+                                                    <mat-expansion-panel style="width:120%;margin-left:-1.3rem"
+                                                        *ngFor="let objMultiLvlTreeviewInfo5 of objMultiLvlTreeviewInfo4.objMenuInfoList">
+                                                        <mat-expansion-panel-header>
+                                                            <div
+                                                                (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo5,'1')">
+                                                                {{objMultiLvlTreeviewInfo5.DescriptionName}}
+                                                            </div>
+                                                        </mat-expansion-panel-header>
+                                                        <div
+                                                            (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo5,'')">
+                                                            <a class="button-link">Add New</a>
+                                                        </div>
+                                                    </mat-expansion-panel>
+                                                </mat-accordion>
+                                                <div (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo4,'')">
+                                                    <a class="button-link">Add New</a>
+                                                </div>
+                                            </mat-expansion-panel>
+                                        </mat-accordion>
+                                        <div (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo3,'')">
+                                            <a class="button-link">Add New</a>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
+                                <div (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo2,'')">
+                                    <a class="button-link">Add New</a>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <div (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo1,'')">
+                            <a class="button-link">Add New</a>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <div (click)="SetnShowParentLevelIdClick(objMultiLvlTreeviewInfo,'')">
+                    <a class="button-link">Add New</a>
+                </div>
+            </mat-expansion-panel>
+            <div (click)="SetnShowParentLevelIdClick('','')">
+                <a class="button-link">Add New</a>
+            </div>
+        </mat-accordion>
+    </div>
+
+    <div class="col-md-10" [formGroup]="myform" style="color:black !important;
+    background: rgb(0,30,97);
+    background: linear-gradient(0deg, rgba(0,30,97,1) 0%, rgba(123,164,221,1) 30%, rgba(254,254,254,1) 100%);">
+        <br>
+        <div class="userDefHeader">
+            <h1>MENU UPDATE </h1>
+        </div>
+
+        <div style="display:flex;justify-content: center;align-items: center;flex-direction: column; ">
+            <div class="col-md-3">
+                <br>
+                <mat-label>Title Name</mat-label>
+                <input matInput placeholder="Enter title Name" class="neoInput" name="Title" formControlName="Title">
+
+            </div>
+
+            <div class="col-md-3">
+                <br>
+                <mat-label>Menu Description</mat-label>
+                <input matInput placeholder="Enter Level Description" class="neoInput" name="DescriptionName"
+                    formControlName="DescriptionName">
+
+            </div>
+            <div class="col-md-3">
+                <br>
+                <mat-label>Url</mat-label>
+                <input matInput placeholder="Enter Url Name" class="neoInput" name="Url" formControlName="Url">
+
+            </div>
+            <!-- <div class="col-md-3">
+                <br>
+                <mat-label>Permission</mat-label>
+                <input matInput placeholder="Enter Permission Name" class="neoInput" name="AlertToId" formControlName="AlertToId">
+
+            </div> -->
+            <div class="col-md-3">
+                <br>
+                <mat-label>Permission</mat-label>
+                <mat-select [formControl]="UserTypesPermns" placeholder="Select" multiple>
+                  <mat-option>
+                    <ngx-mat-select-search [formControl]="UserTypeFilterCtrl"
+                      [placeholderLabel]="'Search'"></ngx-mat-select-search>
+                  </mat-option>
+                  <mat-option *ngFor="let UserType of filteredUserTypes | async" [value]="UserType.Id">
+                    {{UserType.Description}}
+                  </mat-option>
+                </mat-select>
+            </div>
+
+            <!-- <div class="col-md-3">
+                <br>
+                <mat-label>IsCustomMenu</mat-label>
+                <input matInput placeholder="Enter Level IsCustomMenu" class="neoInput" name="IsCustomMenu"
+                    formControlName="IsCustomMenu">
+            </div> -->
+            <div class="col-md-3">
+                <br>
+                <mat-label>IsCustomMenu</mat-label>
+                <mat-select class="neoSelect" placeholder="Select IsCustomMenu" [(ngModel)]="selectedOption" name="IsCustomMenu" formControlName="IsCustomMenu">
+                  <mat-option value="-1">select</mat-option>
+                  <mat-option value="0">No</mat-option>
+                  <mat-option  value="1">Yes</mat-option>
+                </mat-select>
+            </div>
+            <div class="col-md-3">
+                <br>
+                <mat-label>VOrder</mat-label>
+                <input matInput placeholder="Enter VOrder" class="neoInput" name="VOrder"
+                    formControlName="VOrder">
+            </div>
+
+            <div class="col-md-3" style="margin:auto;">
+                <br>
+                <button class="neoButtonSuccess" (click)="SaveUpdateMenuViewLevelInfo()">{{BtnSaveUpdateText}}</button>
+                &nbsp;
+                <button class="neoButtonWarning"  (click)="CancelAddUpdateMenuViewLevel()">Cancel</button>
+                &nbsp;
+                <button class="neoButtonDanger"  *ngIf="isdisable" (click)="onClickMenuViewlevelsDelete()">Delete</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

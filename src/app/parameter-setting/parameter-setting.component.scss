@@ -1,0 +1,62 @@
+
+@import '../app.component.scss';
+
+.neoInput{
+  height:40px;
+}
+
+.neoSelect{
+  height:40px;
+}
+
+.neoButtonSuccess{
+  height:40px;
+}
+
+.neoButtonDanger{
+  height:40px;
+}
+
+::ng-deep .mat-mdc-select-placeholder {
+    font-size: 0.8rem !important;
+}
+label{
+    font-size: 0.8rem;
+}
+::placeholder{
+    font-size: 0.8rem !important;
+}
+
+//Hide scrollbar track.............>
+
+::-webkit-scrollbar {
+    width: 8px; /* Adjust the width as needed */
+    background-color: white; /* Hide the track */
+    cursor: pointer;
+  }
+  
+  /* Hide scrollbar thumb */
+  ::-webkit-scrollbar-thumb {
+    background:linear-gradient(to bottom, #7aa4d5 30%, #1c2d61 100%);; /* Hide the thumb */
+  }
+
+// Hide scrollbar track............./>
+
+.sideHeader{
+  color:#f2faff;
+  background: #f2faff !important;
+}
+
+.sideHeader>div {
+    display:none;
+}
+
+.sideHeader:hover>div {
+    display:block;
+  color:#18570f;
+ 
+}
+
+.sideHeader:hover{
+  background: #f2faff;
+}

@@ -1,0 +1,66 @@
+<div style="background-color: #ececec;">
+  <br>
+  <div class="col-md-12" style="display: flex;justify-content: center;height:auto;flex-wrap: wrap;align-items: center;">
+
+    <div class="col-md-2" style="margin-bottom:1%;">
+      <img src="assets/images/Sigma Main Logo.png" style="height:2.8rem;width:10rem;padding-left:1rem">
+    </div>
+
+
+    <div class="col-md-6" style="display: flex;gap:0.5rem;align-items: center;margin-bottom:1%;flex-wrap: wrap;">
+      <span *ngFor="let objMenuInfo of objMenuInfoList" id="navbarsExampleDefault" class="menu"
+        style="align-items: center;">
+        <!--MainMenu-->
+        <div *ngIf="objMenuInfo.objMenuInfoList && objMenuInfo.objMenuInfoList.length > 0">
+          <button class="neoButton" [matMenuTriggerFor]="menu.childMenu">
+            {{objMenuInfo.DescriptionName}}
+            <fa-icon [icon]="faChevronDown"></fa-icon>
+          </button>
+          <app-menu-item #menu [items]="objMenuInfo.objMenuInfoList"></app-menu-item>
+        </div>
+        <!--SubMenu-->
+        <div *ngIf="!objMenuInfo.objMenuInfoList || objMenuInfo.objMenuInfoList.length == 0">
+          <button class="neoButton" (click)="CheckIsCustomPageUrlOrNot(objMenuInfo)">
+            {{objMenuInfo.DescriptionName}}
+          </button>
+        </div>
+      </span>
+
+    </div>
+
+    <div class="col-md-1" style="display: flex;justify-content: flex-end;padding-right:2rem">
+      <button class="neoButton" (click)="openDialog()"
+      style="display:flex;justify-content: center;border-radius:50%;height:1.2rem;width:1.2rem;">
+        <fa-icon style="color:#1c2d61; font-size: 30px;" [icon]="faBell"></fa-icon>
+      </button>
+      <!-- <mat-menu #menu1="matMenu" xPosition="before">
+        
+      </mat-menu> -->
+      <b style="color:red;font-weight: 750;margin:-1rem 0 0 0; font-size: 30px;">{{alarm}}</b>
+    </div>
+
+
+    <div class="col-md-1" style="margin-bottom:0.5%;">
+      <b style="font-size: 1.3rem;font-weight: 700;">{{currentDateTime | date:'medium'}}</b>
+      <!-- <b style="font-size: 1.3rem;font-weight: 700;">{{currentDateTime | date:'HH:mm:ss'}}</b> -->
+    </div>
+
+    <div class="col-md-1" style="margin-bottom:0.5%;display:flex;gap:1rem;">
+      <button class="neoButton" [matMenuTriggerFor]="menu" style="font-weight: 800;float:left">{{TempUserName}}
+        ⮟</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/login" alt="logout">Logout</button>
+      </mat-menu>
+      <b class="hover-text" *ngIf="showCountDown">
+        <span style="color:red;font-weight: 650;margin-left:0.15rem">&#x26A0;</span><br>
+        <!-- <span class="tooltip-text bottom">Tooltip Text</span> -->
+        <span style="color:red;font-weight: 650;font-size: 1rem;">{{countdown}}</span>
+      </b>
+    </div>
+
+    <div class="col-md-1" style="float: right;padding-right:1rem;margin-bottom:0.5%;">
+      <img src="assets/images/PlantON Logo.png" style="height:2rem;float: right;">
+    </div>
+
+  </div>
+</div>

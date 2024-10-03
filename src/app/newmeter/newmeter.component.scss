@@ -1,0 +1,108 @@
+.speedometer {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    border: 2px solid transperent;
+    background-color:   #d5d5d5;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+  }
+  
+  .speedometer-display {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+  }
+  
+  .speedometer-needle {
+    width: 2px;
+    height: 37%;
+    background-color: blue;
+    position: absolute;
+    top: 8%;
+    left: calc(50% - 1px); /* Adjusted the left positioning */
+    transform-origin: bottom center;
+    transform: translate(-50%, -100%); /* Adjusted the translation */
+    animation: needle-rotate;
+    border-radius: 10px;
+  }
+
+  
+  @keyframes needle-rotate {
+    0% { transform: translate(-50%, -100%) rotate(0deg); } /* Starting position */
+    100% { transform: translate(-50%, -100%) rotate(0deg); } /* Ending position (initial value) */
+  }
+
+
+  .semicircle {
+    width: 250px;
+    height: 250px;
+    background-color:#daf3dc;
+    border-radius: 0 0 100px 100px;
+    position: relative;
+    top: 50%;
+  }
+
+
+
+  .divisions {
+    position: absolute;
+    top: 0;
+    left: 9%;
+    right: 0;
+    bottom: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: bottom center;
+    transform: rotate(270deg);
+  }
+  
+  .division {
+    position: absolute;
+    width: 0.1px;
+    height: 80%;
+    background-color: rgb(183, 183, 183);
+    transform-origin: bottom center;
+    transform: rotate(var(--angle));
+  }
+
+  .subdivision {
+    position: absolute;
+    width: 0.1px;
+    height: 80%;
+    
+    transform-origin: bottom center;
+    transform: rotate(var(--angle));
+  }
+  
+
+  .amount {
+    position: absolute;
+    font-size: 0.90rem;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .speedometer-needle {
+    /* Add your styling for the speedometer needle */
+    transform-origin: 50% 100%;
+    transition: transform 1.5s ease-in-out;
+  }
+
+  .speedometer-arrow{
+    width: 2px;
+    color:blue;
+    position: absolute;
+    top: -0.5rem;
+    left: calc(50% - 7px); /* Adjusted the left positioning */
+    
+  }
+  
+  .rotate-animation {
+    transition: ease-in-out;
+  }

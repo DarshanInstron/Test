@@ -1,0 +1,244 @@
+
+<div class="container-fluid" style="background: #EFF2FF;">
+      <app-fheader [pageName]="'Manual Entry'" [isTreeview]="false"
+      style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px !important;"></app-fheader>
+    <hr style="color: transparent;">
+    <div style="display: flex;background:#EFF2FF;padding-left:15px" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+         
+          <div class="container-fluid" [ngStyle]="{'height': LeftSideTreeviewHeight}" *ngIf="!IsWaitingOn"
+          style="color:black !important;width:97%;">
+          
+              <br>
+              <div class="row">
+                
+                  <div class="col-md-2" >
+                      
+                    <label>Date:</label><br>
+                      <div style="display: flex;">
+          
+                        <input class="neoInput"  matInput [ngxMatDatetimePicker]="picker"
+                        [formControl]="dateControl" (click)="picker.open()">
+                        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+                        <ngx-mat-datetime-picker #picker [hideTime]="true"></ngx-mat-datetime-picker>
+          
+                      </div>
+          
+                  </div>
+          
+                  <div class="col-md-2">
+          
+                      <label>Shift:</label><br>
+                      <mat-select class="neoSelect" placeholder="Select Shift" [(ngModel)]="selectedShift">
+                        <mat-option value="0"> Select </mat-option>
+                        <mat-option  *ngFor="let item of objShiftHours" [value]="item.Description">
+                          {{item.Description}}
+                        </mat-option>
+                      </mat-select>
+                      
+                  </div>
+          
+                  
+          
+                  <div class="col-md-2">
+                    <label>Company:</label><br>
+                    <mat-select class="neoInput" placeholder="Select" [(value)]="selectCompany" #singleSelect (valueChange)="getManualEntryDropdowns(selectCompany,'1')">
+                      <mat-option>
+                        <ngx-mat-select-search [formControl]="MultiLvlFilterCtrl1"
+                          [placeholderLabel]="'Search'"></ngx-mat-select-search>
+                      </mat-option>
+                      <mat-option value="0"> Select </mat-option>
+                      <mat-option *ngFor="let objMultLvlTreeview of filteredMultiLvl1 | async" [value]="objMultLvlTreeview.C001_LevelId">
+                        {{objMultLvlTreeview.C003_LevelName}}
+                      </mat-option>
+                    </mat-select>
+                  </div>
+          
+          
+                  <div class="col-md-2">
+                    <label>Plant:</label><br>
+                    <mat-select class="neoInput" placeholder="Select" [(value)]="selectPlant" #singleSelect (valueChange)="getManualEntryDropdowns(selectPlant,'2')">
+                      <mat-option>
+                        <ngx-mat-select-search [formControl]="MultiLvlFilterCtrl2"
+                          [placeholderLabel]="'Search'"></ngx-mat-select-search>
+                      </mat-option>
+                      <mat-option value="0"> Select </mat-option>
+                      <mat-option *ngFor="let objMultLvlTreeview of filteredMultiLvl2 | async" [value]="objMultLvlTreeview.C001_LevelId">
+                        {{objMultLvlTreeview.C003_LevelName}}
+                      </mat-option>
+                    </mat-select>
+                  </div>
+          
+                  <div class="col-md-2">
+                    <label>Line:</label><br>
+                    <mat-select class="neoInput" placeholder="Select" [(value)]="selectLine" #singleSelect (valueChange)="getManualEntryDropdowns(selectLine,'3')">
+                      <mat-option>
+                        <ngx-mat-select-search [formControl]="MultiLvlFilterCtrl3"
+                          [placeholderLabel]="'Search'"></ngx-mat-select-search>
+                      </mat-option>
+                      <mat-option value="0"> Select </mat-option>
+                      <mat-option *ngFor="let objMultLvlTreeview of filteredMultiLvl3 | async" [value]="objMultLvlTreeview.C001_LevelId">
+                        {{objMultLvlTreeview.C003_LevelName}}
+                      </mat-option>
+                    </mat-select>
+          
+                  </div>
+          
+                  <div class="col-md-2">
+                    <label>SubLine:</label><br>
+                    <mat-select class="neoInput" placeholder="Select" [(value)]="selectSubLine" #singleSelect (valueChange)="getManualEntryDropdowns(selectSubLine,'4')">
+                      <mat-option>
+                        <ngx-mat-select-search [formControl]="MultiLvlFilterCtrl4"
+                          [placeholderLabel]="'Search'"></ngx-mat-select-search>
+                      </mat-option>
+                      <mat-option value="0"> Select </mat-option>
+                      <mat-option *ngFor="let objMultLvlTreeview of filteredMultiLvl4 | async" [value]="objMultLvlTreeview.C001_LevelId">
+                        {{objMultLvlTreeview.C003_LevelName}}
+                      </mat-option>
+                    </mat-select>
+                  </div>
+          
+                  <div class="col-md-2">
+                    <label>Machine:</label><br>
+                    <mat-select class="neoInput" placeholder="Select" [(value)]="selectMachine" #singleSelect (valueChange)="getManualEntryDropdowns(selectMachine,'5')">
+                      <mat-option>
+                        <ngx-mat-select-search [formControl]="MultiLvlFilterCtrl5"
+                          [placeholderLabel]="'Search'"></ngx-mat-select-search>
+                      </mat-option>
+                      <mat-option value="0"> Select </mat-option>
+                      <mat-option *ngFor="let objMultLvlTreeview of filteredMultiLvl5 | async" [value]="objMultLvlTreeview.C001_LevelId">
+                        {{objMultLvlTreeview.C003_LevelName}}
+                      </mat-option>
+                    </mat-select>
+                  </div>
+          
+                  <div class="col-md-2">
+              
+                    <label>Operator:</label>
+                    <mat-select class="neoSelect" [formControl]="operatorIds" multiple placeholder="Select" >
+                      <mat-option>
+                        <ngx-mat-select-search [formControl]="OperatorFilterCtrl1"
+                          [placeholderLabel]="'Search'"></ngx-mat-select-search>
+                      </mat-option>
+                      <mat-option  class="neoOption" *ngFor="let operator of filteredOperators |async" [value]="operator.Id">
+                        {{operator.Description}}
+                      </mat-option>
+                    </mat-select>
+                  </div>
+          
+                  <div class="col-md-2">
+          
+                    <label>Line Incharge:</label>
+                    <mat-select class="neoSelect" [formControl]="incharge" multiple placeholder="Select" >
+                      <mat-option>
+                        <ngx-mat-select-search [formControl]="LineInchargeFilterCtrl1"
+                          [placeholderLabel]="'Search'"></ngx-mat-select-search>
+                      </mat-option>
+                      <mat-option class="neoOption" *ngFor="let incharge of filteredLineIncharge | async" [value]="incharge.Id">
+                        {{ incharge.Description }}
+                      </mat-option>
+                    </mat-select>
+                    
+                  </div>
+          
+                  <div class="col-md-2">
+                    <br>
+                    <button class="neoButtonSuccess" [disabled]="disableViewbtn" (click)="GetManualEntryTblData()">View</button>
+                    <!-- <button class="neoButtonSuccess" (click)="getManualEntryTableData('2023-08-01','65','Shift 1')">VIEW</button> -->
+                    <button class="neoButtonSuccess" (click)="SP_UpdateProductionEntry_Dev()" *ngIf="objManualEntryTableData.length>0">Update</button>
+                  </div>
+          
+                  
+              </div>
+              <br><br>
+              <div *ngIf="objAPQSummeryList.length>0">
+                <table class="neomorphic-table">
+                  <thead>
+                    <tr>
+                      <th>PLAN</th>
+                      <th>ACT</th>
+                      <th>A</th>
+                      <th>P</th>
+                      <th>Q</th>
+                      <th>OEE</th>
+                      <th>SPEED LOSS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of objAPQSummeryList">
+                      <td>{{item.Plan}}</td>
+                      <td>{{item.Act}}</td>
+                      <td>{{item.A}}</td>
+                      <td>{{item.P}}</td>
+                      <td>{{item.Q}}</td>
+                      <td>{{item.OEE}}</td>
+                      <td>{{item.SpeedLoss}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div *ngIf="objManualEntryTableData.length>0">
+                  <table class="neomorphic-table">
+                    <thead>
+                      <tr>
+                        <th>From Time</th>
+                        <th>To Time</th>
+                        <th>Scheduled DownTime(Min)</th>
+                        <th>Down Time (Min)</th>
+                        <th>A Other</th>
+                        <th>Speed Loss</th>
+                        <th>Production Count(Nos)</th>
+                        <th>Production Type</th>
+                        <th>Production Duration (Min)</th>
+                        <th>Losses</th>
+                        <th>RM Spec</th>
+                        <th>Remarks</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of objManualEntryTableData">
+                        <td>
+                          {{item.FromTime}}
+                        </td>
+                        <td>
+                          {{item.ToTime}}
+                        </td>
+                        <td>
+                          <!-- <input class="neoInput" value="0"> -->
+                          <input type="text" class="neoInput" [(ngModel)]="item.PlanOff">
+                          <!-- <input  id="gd{{row.id}}_{{column}}" type="number"  value=0 [ngModel]="get(row.id,column)" (ngModelChange)="set(row.id,column,$event)"> -->
+                        </td>
+                        <td>{{item.Dt_1}}</td>
+                        <td>{{item.Aotherqty}}</td>
+                        <td>{{item.SPEEDLOSS}}</td>
+                        <td>{{item.Pc_1}}</td>
+                        <td>
+                          <select class="neoSelect">
+                            <option class="neoOption" value="P1">Product 1</option>
+                            <option class="neoOption" value="P2">Product 2</option>
+                            <option class="neoOption" value="P3">Product 3</option>
+                          </select>
+                        </td>
+                        <td>
+                          {{item.Dur_1}}
+                        </td>
+                        <td>
+                          <button class="neoButtonAdd" (click)="openManualEntryPopupForSpecificRec(item)">+</button>
+                        </td>
+                        <td>
+                          <input type="text" class="neoInput" [(ngModel)]="item.RmSpec">
+                        </td>
+                        <td>
+                          <input type="text" class="neoInput" [(ngModel)]="item.Rm_1">
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+          </div>
+       
+          <app-sideheader style="width:2.5%"></app-sideheader>
+          
+      </div>
+      <app-footer style="position: fixed;bottom: 0;right:0;left:0;"></app-footer>
+</div>

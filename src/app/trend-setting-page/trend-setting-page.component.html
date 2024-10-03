@@ -1,0 +1,98 @@
+<div class="container-fluid" style="display:flex;">
+  <div class="col-md-12">
+    
+    <app-entryfheadertrial [pageName]="'TREND SETTING'"
+      style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px !important;"></app-entryfheadertrial>
+    <hr style="margin-top:-0.8rem">
+    <div style="display: flex;background:#f2faff;margin-top:-0.3rem;" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+      <div style="width:97%;" >
+          <form [formGroup]="myform">
+            <div class="row" style="align-items: center;display:flex;justify-content: center;gap:2rem;flex-wrap: wrap;">
+
+              <!-- <div class="col-md-4 ">
+          <label>Header Font Size:</label>
+          <input class="neoInput" matInput placeholder="Header Font Size" name="HeaderFontSize" formControlName="HeaderFontSize" required>          
+        </div>
+
+        <div class="col-md-4 ">
+          <label>Header Font Color:</label>
+          <input class="neoInput" matInput placeholder="Header Font Color" name="HeaderFontColor" formControlName="HeaderFontColor" required>
+        </div> -->
+
+              <div class="col-md-4 ">
+                <label>Refresh Rate(Sec):</label>
+                <input class="neoInput" type="number" placeholder="Refresh Rate" name="RefreshRate"
+                  formControlName="RefreshRate" required>
+              </div>
+
+              <div class="col-md-4 ">
+                <label>Live Trend Time(Min):</label>
+                <input class="neoInput" type="number" placeholder="Live Trend Time(Min)" name="LiveTrendTime"
+                  formControlName="LiveTrendTime" required>
+              </div>
+
+            </div>
+          </form>
+          <br><br>
+          <div class="col-md-12 " style="text-align:center ;">
+            <button class="neoButtonSuccess" type="submit" (click)="onInsertUpdateTrendSettingClick()"
+              matTooltip="Info about the action">{{BtnSaveUpdateText}}</button>&nbsp;
+
+            <button class="neoButtonWarning" type="submit" (click)="onResetTrendSettingClick()"
+              matTooltip="Info about the action">Reset</button>&nbsp;
+          </div>
+      </div>
+      <div class="sideHeader " [ngStyle]="{'height': LeftSideTreeviewHeight}" style="width:2.5%">
+        <br>
+        <div matTooltip="Production Dashboard" matTooltipPosition="left"
+          style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+          <button mat-icon-button routerLink="/dashboardnew">
+            <fa-icon [icon]="faGears" size="2xl"></fa-icon>
+          </button>
+        </div>
+        <br>
+        <div matTooltip="EMS Dashboard" matTooltipPosition="left"
+          style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+          <button mat-icon-button routerLink="/emsdashboard">
+            <fa-icon [icon]="faAtom" size="2xl"></fa-icon>
+          </button>
+        </div>
+        <br>
+        <div matTooltip="KPI" matTooltipPosition="left"
+          style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+          <button mat-icon-button routerLink="/kpipage">
+            <fa-icon [icon]="faK" size="2xl"></fa-icon>
+          </button>
+        </div>
+        <br>
+        <div matTooltip="Trend" matTooltipPosition="left"
+          style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+          <button mat-icon-button routerLink="/trendpage">
+            <fa-icon [icon]="faChartSimple" size="2xl"></fa-icon>
+          </button>
+        </div>
+        <br>
+        <div matTooltip="Custom Reports" matTooltipPosition="left"
+          style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+          <button mat-icon-button routerLink="/customreport">
+            <fa-icon [icon]="faR" size="2xl"></fa-icon>
+          </button>
+        </div>
+        <br>
+        <div matTooltip="Custom Reports" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+          <button mat-icon-button routerLink="/userdefination">
+            <fa-icon [icon]="faUserPlus" size="2xl" ></fa-icon>
+        </button>
+        </div>
+        <br>
+        <div matTooltip="Custom Reports" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+          <button mat-icon-button routerLink="/manualentry">
+            <fa-icon [icon]="faM" size="2xl" ></fa-icon>
+        </button>
+        </div>
+        ....
+      </div>
+    </div>
+    <app-footer style="position: fixed;bottom: 0;right:0;left:0;"></app-footer>
+  </div>
+</div>

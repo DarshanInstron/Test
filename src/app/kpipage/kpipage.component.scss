@@ -1,0 +1,115 @@
+@import '../app.component.scss';
+//page header
+
+.userDefHeader
+{   margin:auto;
+    width:98%;
+    text-align: center;
+    height:2rem;
+    background: #e8f0fe;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.userDefHeader > h3
+{
+    font-weight: 700;
+    color:#1c2d61;
+}
+
+//page header
+
+.kpiCardHeader {
+    text-align: left;
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+}
+
+.kpiCardHeader > p {
+    font-size: 1.1vw;
+    font-weight: 700;
+    padding-top: 1rem;
+    
+    // left: -35px;
+    top: 3px;
+    
+}
+
+.kpicardParent{
+    position:relative;
+    padding:0.5rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+li 
+{   
+    color:black !important;
+}
+
+
+//hide scrollbar
+/* For WebKit based browsers (Chrome, Safari) */
+/* Hide scrollbar track */
+::-webkit-scrollbar {
+    width: 8px; /* Adjust the width as needed */
+    background-color: transparent; /* Hide the track */
+  }
+  
+  /* Hide scrollbar thumb */
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Hide the thumb */
+  }
+  
+  /* For Firefox */
+  /* Hide scrollbar track */
+  .scrollbar-track {
+    width: 8px; /* Adjust the width as needed */
+    background-color: transparent; /* Hide the track */
+  }
+  
+  /* Hide scrollbar thumb */
+  .scrollbar-thumb {
+    background-color: transparent; /* Hide the thumb */
+  }
+
+  
+  //hide scrollbar
+
+
+
+  .sideHeader{
+    color:#f2faff;
+    background: #f2faff !important;
+  }
+  
+  .sideHeader>div {
+      display:none;
+  }
+  
+  .sideHeader:hover>div {
+      display:block;
+    color:#18570f;
+   
+  }
+  
+  .sideHeader:hover{
+    background: #f2faff;
+  }
+
+
+  .wave-header::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('wave.svg');
+    background-size: cover;
+    z-index: -1;
+  }
+  
+  .wave-header h1,
+  .wave-header p {
+    position: relative;
+    z-index: 1;
+    /* Add any additional styles you need */
+  }

@@ -1,0 +1,110 @@
+<div class="container-fluid" style="background: #EFF2FF;">
+  
+    <app-fheader [pageName]="'Custom Report'" [isTreeview]="false"
+        style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px !important;"></app-fheader>
+    <hr style="color: transparent;">
+
+    <div style="display: flex;background:#EFF2FF;padding-left:15px" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+        <div style="width:97%">
+
+  <div class="userCredentialDiv1">
+    <br>
+    <div style="align-items: center;display:flex;justify-content: center;gap:2rem;flex-wrap: wrap;">
+
+      <div class="col-md-2">
+        <label for="selectReport">Report:</label><br>
+        <mat-select class="neoSelect" placeholder="Select Report" [(ngModel)]="selectedReportId"
+          (selectionChange)="GetMachineIdByReportId()">
+          <mat-option class="neoOption">
+            <ngx-mat-select-search [formControl]="ReportTypeFilterCtrl"
+              [placeholderLabel]="'Search'"></ngx-mat-select-search>
+          </mat-option>
+          <mat-option value="0"> Select </mat-option>
+          <mat-option *ngFor="let report of filteredReportList | async" [value]="report.Id">
+            {{report.Description}}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <div class="col-md-2">
+        <label for="selectMachine">Machine:</label><br>
+        <mat-select class="neoSelect" placeholder="Select Machine" [(ngModel)]="selectedMachineId">
+          <mat-option class="neoOption">
+            <ngx-mat-select-search [formControl]="MachinesFilterCtrl"
+              [placeholderLabel]="'Search'"></ngx-mat-select-search>
+          </mat-option>
+          <mat-option value="0"> Select </mat-option>
+          <mat-option class="neoOption" *ngFor="let machine of filteredMachinesList | async" [value]="machine.Id">
+            {{machine.Description}}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <div class="col-md-2">
+        <label for="selectInterval">Interval:</label><br>
+        <mat-select class="neoSelect" placeholder="Select Interval" [(ngModel)]="selectedIntervalId">
+          <mat-option class="neoOption">
+            <ngx-mat-select-search [formControl]="IntervalFilterCtrl"
+              [placeholderLabel]="'Search'"></ngx-mat-select-search>
+          </mat-option>
+          <mat-option value="0"> Select </mat-option>
+          <mat-option class="neoOption" *ngFor="let interval of filteredIntervalList | async"
+            [value]="interval.Description">
+            {{interval.Description}}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <div class="col-md-2">
+        <label>From Date</label>
+        <div style="display:flex">
+          <input class="neoInput" matInput [ngxMatDatetimePicker]="picker1" [formControl]="dtFromDateTime"
+            (click)="picker1.open()">
+          <mat-datepicker-toggle matSuffix [for]="$any(picker1)"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker1 [showSeconds]="true"></ngx-mat-datetime-picker>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <label>To Date</label>
+        <div style="display:flex">
+          <input class="neoInput" matInput [ngxMatDatetimePicker]="picker2" [formControl]="dtToDateTime"
+            (click)="picker2.open()">
+          <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker2 [showSeconds]="true"></ngx-mat-datetime-picker>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+    <div class="col-md-12 " style="text-align:center ;">
+      <button class="neoButtonSuccess" type="submit" matTooltip="View"
+        (click)="onClickViewPdf()">View</button>&nbsp;
+      <button class="neoButtonDanger" type="submit" matTooltip="PDF Download" (click)="onClickDownloadPdf()">PDF</button>&nbsp;
+      <button class="neoButtonWarning" type="submit" matTooltip="Manual Entry" style="display: none;">Manual
+        Entry</button>&nbsp;
+      <!--<button  class="neoButtonWarning" type="submit" 
+          matTooltip="Excel Download" (click)="onClickDownloadExcel()">Manual Entry(Excel)</button>&nbsp;    -->
+    </div>
+  </div>
+
+  <br />
+
+  <!-- report View Container start -->
+  <div class="userCredentialDiv2" style="padding: 0 5rem 0 5rem">
+    <div class="clearfix"></div>
+    <div class="help-block"></div>
+    <br>
+    <div id="reportContainer"></div>
+    <br>
+    <div class="clearfix"></div>
+    <div class="help-block"></div>
+  </div>
+  <!-- report View Container end -->
+
+</div>
+<app-sideheader style="width:2.5%"></app-sideheader>
+</div>
+<app-footer style="position: fixed;bottom: 0;right:0;left:0;"></app-footer>
+
+</div>

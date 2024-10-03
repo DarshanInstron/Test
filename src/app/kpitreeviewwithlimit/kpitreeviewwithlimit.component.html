@@ -1,0 +1,179 @@
+<div style="background: #f2faff;height:3rem;display: flex;justify-content: left;align-items: center;margin:-10px 5px 0 0;width:100%">
+        
+    <img src="assets/images/PlantON Logo.png" style="height:1.5rem;margin-left: 1rem;">
+   
+</div>
+<mat-accordion multi class="mat-table" >
+    
+    <br>
+    <mat-accordion lass="mat-table" style="color:#EFF2FF !important">
+        <mat-expansion-panel *ngFor="let objMultiLvlTreeviewInfo of objMultiLvlTreeviewInfoList" style="width:100%;" expanded>
+            <mat-expansion-panel-header class="mat-row"
+                (click)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo,1,1)">
+                <span class="mat-cell">{{objMultiLvlTreeviewInfo.C003_LevelName}}</span>
+            </mat-expansion-panel-header>
+            <div *ngFor="let objMultiLvlTreeviewInfo1 of objMultiLvlTreeviewInfo.objMultiLvlTreeviewInfoList">
+                <div *ngIf="objMultiLvlTreeviewInfo1.objMultiLvlTreeviewInfoList.length>0">
+                    <mat-accordion lass="mat-table">
+                        <mat-expansion-panel style="width:115%;margin-left:-1.5rem" expanded>
+                            <mat-expansion-panel-header
+                                (click)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo1,1,2)">
+                                <div>{{objMultiLvlTreeviewInfo1.C003_LevelName}} </div>
+                            </mat-expansion-panel-header>
+                            <div
+                                *ngFor="let objMultiLvlTreeviewInfo2 of objMultiLvlTreeviewInfo1.objMultiLvlTreeviewInfoList">
+                                <div *ngIf="objMultiLvlTreeviewInfo2.objMultiLvlTreeviewInfoList.length>0">
+                                    <mat-accordion lass="mat-table">
+                                        <mat-expansion-panel style="width:115%;margin-left:-1.5rem" expanded>
+                                            <mat-expansion-panel-header
+                                                (click)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo2,1,3)">
+                                                <div>{{objMultiLvlTreeviewInfo2.C003_LevelName}} </div>
+                                            </mat-expansion-panel-header>
+                                            <div
+                                                *ngFor="let objMultiLvlTreeviewInfo3 of objMultiLvlTreeviewInfo2.objMultiLvlTreeviewInfoList">
+                                                <div
+                                                    *ngIf="objMultiLvlTreeviewInfo3.objMultiLvlTreeviewInfoList.length>0">
+                                                    <mat-accordion lass="mat-table">
+                                                        <mat-expansion-panel style="width:115%;margin-left:-1.5rem" expanded>
+                                                            <mat-expansion-panel-header
+                                                                (click)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo3,1,4)">
+                                                                <div>{{objMultiLvlTreeviewInfo3.C003_LevelName}} </div>
+                                                            </mat-expansion-panel-header>
+                                                            <div
+                                                                *ngFor="let objMultiLvlTreeviewInfo4 of objMultiLvlTreeviewInfo3.objMultiLvlTreeviewInfoList">
+                                                                <div
+                                                                    *ngIf="objMultiLvlTreeviewInfo4.objMultiLvlTreeviewInfoList.length>0">
+                                                                    <mat-accordion lass="mat-table">
+                                                                        <mat-expansion-panel expanded
+                                                                            style="width:115%;margin-left:-1.5rem">
+                                                                            <mat-expansion-panel-header
+                                                                                (click)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo4,1,5)">
+                                                                                <div>
+                                                                                    {{objMultiLvlTreeviewInfo4.C003_LevelName}}
+                                                                                </div>
+                                                                            </mat-expansion-panel-header>
+                                                                            <div
+                                                                                *ngFor="let objMultiLvlTreeviewInfo5 of objMultiLvlTreeviewInfo4.objMultiLvlTreeviewInfoList">
+                                                                                <div
+                                                                                    *ngIf="objMultiLvlTreeviewInfo5.objMultiLvlTreeviewInfoList.length>0">
+                                                                                    <mat-accordion lass="mat-table" expanded>
+                                                                                        <mat-expansion-panel
+                                                                                            style="width:115%;margin-left:-1.5rem">
+                                                                                            <mat-expansion-panel-header
+                                                                                                (click)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo5,1,6)">
+                                                                                                <div>
+                                                                                                    {{objMultiLvlTreeviewInfo5.C003_LevelName}}
+                                                                                                </div>
+                                                                                            </mat-expansion-panel-header>
+                                                                                            <div
+                                                                                                *ngFor="let objMultiLvlTreeviewInfo6 of objMultiLvlTreeviewInfo5.objMultiLvlTreeviewInfoList">
+                                                                                                <div
+                                                                                                    *ngIf="objMultiLvlTreeviewInfo6.objMultiLvlTreeviewInfoList.length>0">
+                                                                                                    <mat-accordion
+                                                                                                        lass="mat-table">
+                                                                                                        <mat-expansion-panel expanded
+                                                                                                            style="width:115%;margin-left:-1.5rem">
+                                                                                                            <mat-expansion-panel-header
+                                                                                                                (click)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo6,1,7)">
+                                                                                                                <div>
+                                                                                                                    {{objMultiLvlTreeviewInfo6.C003_LevelName}}
+                                                                                                                </div>
+                                                                                                            </mat-expansion-panel-header>
+                                                                                                        </mat-expansion-panel>
+                                                                                                    </mat-accordion>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    *ngIf="objMultiLvlTreeviewInfo6.objMultiLvlTreeviewInfoList.length<1">
+                                                                                                    <mat-radio-button
+                                                                                                        class="example-radio-button"
+                                                                                                        color="primary"
+                                                                                                        (change)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo6,1,8)"
+                                                                                                        [(ngModel)]="C001_LevelId"
+                                                                                                        [value]="objMultiLvlTreeviewInfo6.C001_LevelId"
+                                                                                                        style="width: 100%; padding: 3px;color:#EFF2FF !important;">
+                                                                                                        {{objMultiLvlTreeviewInfo6.C003_LevelName}}
+                                                                                                    </mat-radio-button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </mat-expansion-panel>
+                                                                                    </mat-accordion>
+                                                                                </div>
+                                                                                <div
+                                                                                    *ngIf="objMultiLvlTreeviewInfo5.objMultiLvlTreeviewInfoList.length<1">
+
+                                                                                    <mat-radio-button
+                                                                                        class="example-radio-button"
+                                                                                        color="primary"
+                                                                                        (change)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo5,1,6)"
+                                                                                        [(ngModel)]="C001_LevelId"
+                                                                                        [value]="objMultiLvlTreeviewInfo5.C001_LevelId"
+                                                                                        style="width: 100%; padding: 3px;color:#EFF2FF !important;">
+                                                                                        {{objMultiLvlTreeviewInfo5.C003_LevelName}}
+                                                                                    </mat-radio-button>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </mat-expansion-panel>
+                                                                    </mat-accordion>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="objMultiLvlTreeviewInfo4.objMultiLvlTreeviewInfoList.length<1">
+
+                                                                    <mat-radio-button class="example-radio-button"
+                                                                        color="primary"
+                                                                        (change)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo4,1,5)"
+                                                                        [(ngModel)]="C001_LevelId"
+                                                                        [value]="objMultiLvlTreeviewInfo4.C001_LevelId"
+                                                                        style="width: 100%; padding: 3px;color:#EFF2FF !important;">
+                                                                        {{objMultiLvlTreeviewInfo4.C003_LevelName}}
+                                                                    </mat-radio-button>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </mat-expansion-panel>
+                                                    </mat-accordion>
+                                                </div>
+                                                <div
+                                                    *ngIf="objMultiLvlTreeviewInfo3.objMultiLvlTreeviewInfoList.length<1">
+
+                                                    <mat-radio-button class="example-radio-button" color="primary"
+                                                        (change)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo3,1,4)"
+                                                        [(ngModel)]="C001_LevelId"
+                                                        [value]="objMultiLvlTreeviewInfo3.C001_LevelId"
+                                                        style="width: 100%; padding: 3px;color:#EFF2FF !important;">
+                                                        {{objMultiLvlTreeviewInfo3.C003_LevelName}}
+                                                    </mat-radio-button>
+
+                                                </div>
+                                            </div>
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div>
+                                <div *ngIf="objMultiLvlTreeviewInfo2.objMultiLvlTreeviewInfoList.length<1">
+
+                                    <mat-radio-button class="example-radio-button" color="primary"
+                                        (change)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo2,1,3)"
+                                        [(ngModel)]="C001_LevelId" [value]="objMultiLvlTreeviewInfo2.C001_LevelId"
+                                        style="width: 100%; padding: 3px;color:#EFF2FF !important;">
+                                        {{objMultiLvlTreeviewInfo2.C003_LevelName}}
+                                    </mat-radio-button>
+
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+                <div *ngIf="objMultiLvlTreeviewInfo1.objMultiLvlTreeviewInfoList.length<1">
+
+                    <mat-radio-button class="example-radio-button" color="primary"
+                        (change)="ShowKpiBoxesInfoByObjectClick(objMultiLvlTreeviewInfo1,1,2)"
+                        [(ngModel)]="C001_LevelId" [value]="objMultiLvlTreeviewInfo1.C001_LevelId"
+                        style="width: 100%; padding: 3px;color:#EFF2FF !important;">
+                        {{objMultiLvlTreeviewInfo1.C003_LevelName}}
+                    </mat-radio-button>
+
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</mat-accordion>

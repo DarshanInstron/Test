@@ -1,0 +1,51 @@
+@import '../app.component.scss';
+*{
+      font-weight: 540;
+      color:black
+   }
+    .logOutParent
+    {
+        // border:1px solid red;
+        width:3.5rem;
+        height:3.5rem;
+        align-items: center;
+        margin-top: -1.5%;
+        border-radius: 50%;
+        box-shadow:  -5px -6px 6px rgba(255,255,255,1),  0px 4px 6px  rgba(0, 0, 0, 0.25);
+        float: right;
+    }
+
+    .logOutParent:active{
+        box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+    }
+
+    .neoButton{
+        width:6rem;
+        font-size: 0.80rem;
+    }
+
+    .tooltip-text {
+        visibility: hidden;
+        position: absolute;
+        z-index: 1;
+        //width: 100px;
+        color: white;
+        background-color: #192733;
+        padding: 1px;
+      }
+      
+      .hover-text:hover .tooltip-text {
+        visibility: visible;
+      }
+      
+      .bottom {
+        top:25px;
+        left: -50%;
+      }
+
+      .hover-text {
+        position: relative;
+        display: inline-block;
+        margin: 5px;
+        text-align: center;
+      }

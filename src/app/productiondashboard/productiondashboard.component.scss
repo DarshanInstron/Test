@@ -1,0 +1,297 @@
+@import '../app.component.scss';
+
+//...............flipper..............
+.card {
+  
+  max-width: 30.5rem;
+  background: white;
+  // background: #f4fbf4;
+  //float: left;
+  perspective: 500px;
+  position: relative;
+  overflow: hidden;
+  // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  // box-shadow: 
+  // rgba(50, 50, 93, 0.15) 0px 50px 100px -20px, 
+  // rgba(0, 0, 0, 0.2) 0px 30px 60px -30px, 
+  // rgba(10, 37, 64, 0.25) 0px -2px 6px 0px inset;
+  box-shadow: 0px -6px 10px 1px rgba(255, 255, 255, 1), 0px 4px 15px 1px rgba(0, 0, 0, 0.25);
+  padding: 0.5rem;
+  margin-top:1rem;
+  transition: transform 0.3s ease-in-out;
+ 
+}
+
+.content {
+  height: 9rem;
+  width: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .content {
+  transform: rotateY( 180deg ) ;
+  transition: transform 2s 1.5s;
+}
+
+.front
+ {
+  position: absolute;
+  width: 100%;
+  color:black;
+  text-align: left;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:2rem;
+}
+
+// .front > div
+// {
+//   height:15.5rem
+// }
+
+.back {
+  position: absolute;
+  width:100%;
+  color:#1c2d61;
+  text-align: center;
+  backface-visibility: hidden;
+  transform: rotateY( 180deg );
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+}
+
+//.................flipper......................
+
+hr{
+  color:#1c2d61;
+  border:1.9px solid #1c2d61;
+}
+h1{
+  font-weight: 500;
+}
+
+
+//#F2EFE7
+
+.mat-card-content > div > span:nth-child(3){
+  color:rgb(255, 0, 0);
+  font-size: 18px;
+}
+
+.mat-card-header 
+{
+  color:#1c2d61;
+}
+
+.prodCardData
+{
+  padding:0.2rem;
+  overflow-x: hidden;
+}
+
+
+
+// ::ng-deep .carousel-indicators{
+//   position:fixed;
+//   bottom: 13%;
+//   left: 45%;
+//   transform: translateX(-85%);
+//   display: flex;
+
+//   -webkit-transform: translateX(-85%);
+//   -moz-transform: translateX(-85%);
+//   -ms-transform: translateX(-85%);
+//   -o-transform: translateX(-85%);
+// }
+
+.cardParent {
+ display: grid;
+ grid-template-columns: repeat(3,1fr);
+ gap:1rem;
+ align-items: center;
+//  height:50em;
+//  overflow-y: scroll
+//  justify-content: center;
+//  gap:1rem;
+ 
+}
+/* For WebKit based browsers (Chrome, Safari) */
+/* Hide scrollbar track */
+::-webkit-scrollbar {
+  width: 8px; /* Adjust the width as needed */
+  background-color: transparent; /* Hide the track */
+}
+
+/* Hide scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Hide the thumb */
+}
+
+/* For Firefox */
+/* Hide scrollbar track */
+.scrollbar-track {
+  width: 8px; /* Adjust the width as needed */
+  background-color: transparent; /* Hide the track */
+}
+
+/* Hide scrollbar thumb */
+.scrollbar-thumb {
+  background-color: transparent; /* Hide the thumb */
+}
+
+
+//............toggle-switch................
+
+.switch-toggle input[type="checkbox"] {
+position: absolute;
+opacity: 0;
+z-index: -2;
+}
+
+.switch-toggle input[type="checkbox"] + label {
+position: relative;
+display: inline-block;
+width: 100px;
+height: 40px;
+border-radius: 20px;
+margin: 0;
+cursor: pointer;
+box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+
+}
+
+.switch-toggle input[type="checkbox"] + label::before {
+position: absolute;
+content: 'START';
+font-size: 13px;
+text-align: center;
+line-height: 25px;
+top: 8px;
+left: 8px;
+width: 45px;
+height: 25px;
+border-radius: 20px;
+background-color: #f2f2f2;
+color:#7aa4d5;
+box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
+transition: .3s ease-in-out;
+}
+
+.switch-toggle input[type="checkbox"]:checked + label::before {
+left: 50%;
+content: 'STOP';
+color: #f2f2f2;
+background: linear-gradient(70deg, rgba(0,30,97,1) 0%, rgba(123,164,221,1) 100%);
+box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+//............toggle-switch................
+
+//.............sidebar.......................
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ececec;
+}
+
+.example-is-mobile .example-toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+.example-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+
+//.............sidebar.......................
+
+
+// .wave-header {
+//   position: relative;
+//   overflow: hidden;
+//   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+//   padding: 0.5rem;
+//   height: 19rem;
+//   max-width: 35rem;
+//   //float: left;
+//   box-shadow:inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15) !important;
+//   perspective: 500px;
+//   //background-color: white; /* Set your desired background color here */
+// }
+
+.wave-header::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('wave.svg');
+  background-size: cover;
+  z-index: -1;
+}
+
+.wave-header h1,
+.wave-header p {
+  position: relative;
+  z-index: 1;
+  /* Add any additional styles you need */
+}
+
+@media screen and (max-width: 1600px) {
+  .cardParent {
+    
+    max-height:30rem;
+    
+   }
+}
+
+// @media screen and (min-width: 1610px) {
+//   .cardParent {
+    
+//     grid-template-columns: repeat(3,1fr);
+    
+//    }
+// }
+.sideHeader{
+  color:#f2faff;
+  background: #f2faff !important;
+}
+
+.sideHeader>div {
+	display:none;
+
+}
+
+.sideHeader:hover>div {
+	display:block;
+  color:#013E5D;
+ 
+}
+
+.sideHeader:hover{
+  background: #f2faff;
+}
+
+// fa-icon{
+//   color:$primary-color;
+// }

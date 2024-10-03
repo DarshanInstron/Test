@@ -1,0 +1,39 @@
+
+<div class="sideHeader justify-content-center" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+    <br>
+
+  <button mat-icon-button matTooltip="Production Dashboard" matTooltipPosition="left" routerLink="/dashboardnew">
+    <fa-icon [icon]="faGears" size="2xl"></fa-icon>
+  </button>
+
+<br>
+  <button mat-icon-button matTooltip="EMS Dashboard" routerLink="/emsdashboard">
+    <fa-icon [icon]="faAtom" size="2xl"></fa-icon>
+  </button>
+
+<br>
+  <button mat-icon-button routerLink="/kpipage">
+    <fa-icon [icon]="faK" size="2xl"></fa-icon>
+  </button>
+
+<br>
+  <button mat-icon-button routerLink="/trendpage">
+    <fa-icon [icon]="faChartSimple" size="2xl"></fa-icon>
+  </button>
+
+<br>
+  <button mat-icon-button routerLink="/customreport">
+    <fa-icon [icon]="faR" size="2xl" ></fa-icon>
+  </button>
+
+<br>
+  <button mat-icon-button routerLink="/userdefination">
+    <fa-icon [icon]="faUserPlus" size="2xl" ></fa-icon>
+</button>
+
+<br>
+  <button mat-icon-button routerLink="/manualentry">
+    <fa-icon [icon]="faM" size="2xl" ></fa-icon>
+</button>
+
+</div>

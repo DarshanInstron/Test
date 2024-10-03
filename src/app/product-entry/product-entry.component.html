@@ -1,0 +1,169 @@
+<div class="container-fluid" style="background: #EFF2FF;">
+      <app-fheader [pageName]="'Product Entry'" [isTreeview]="false"
+      style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px !important;"></app-fheader>
+    <hr style="color: transparent;">
+
+<div style="display: flex;background:#EFF2FF;padding-left:15px" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+  <!-- header end-->
+  <div class="content" style="width:97.5%;">
+    <div class="container" style="width:97.5%;">
+
+      <!-- form start -->
+      <form [formGroup]="myform" >
+        <br>
+        <div style="align-items: center;justify-content: center;display:flex;gap:2rem;flex-wrap: wrap;">
+
+          <div class="col-md-3 ">          
+            <label>Product Type:</label>
+            <input class="neoInput" matInput placeholder=" Enter Product Type" name="Id" formControlName="Id" required>
+          </div>
+
+          <div class="col-md-3 ">          
+            <label>Product Code:</label>
+            <input class="neoInput" matInput placeholder=" Enter Product Code" name="ProductCode" formControlName="ProductCode" required>
+          </div>
+            
+          <div class="col-md-3 ">          
+            <label>Product Name:</label>
+            <input class="neoInput" matInput placeholder="Enter Product Name" name="ProductName"  formControlName="ProductName" required>
+          </div>
+
+          <div class="col-md-3 ">          
+            <label>DN Set Point(Sec):</label>
+            <input class="neoInput" matInput placeholder="Enter DN Set" name="DownTimeSetPoint" formControlName="DownTimeSetPoint" required>
+          </div>
+
+          <div class="col-md-3 ">          
+            <label>DN Delay(Sec):</label>
+            <input class="neoInput" matInput placeholder=" Enter DN Delay" name="DownTimeDelay" formControlName="DownTimeDelay" required>
+          </div>
+
+          <div class="col-md-3 ">          
+            <label>Cycle Time(Sec):</label>
+            <input class="neoInput" matInput placeholder=" Enter Cycle Time" name="CycleTime" formControlName="CycleTime" required>
+          </div>
+
+          <div class="col-md-3 ">          
+            <label> Machine</label><br>
+            <mat-select class="neoSelect" formControlName="UniqueId" placeholder="Select Machine" #singleSelect>
+              <mat-option class="neoOption">
+                <ngx-mat-select-search [formControl]="MachineListFilterCtrl"
+                  [placeholderLabel]="'Search'"></ngx-mat-select-search>
+              </mat-option>
+              <mat-option class="neoOption" *ngFor="let objfilteredMachine of filteredMachineList | async" [value]="objfilteredMachine.UniqueId">
+                {{ objfilteredMachine.Description }}
+              </mat-option>
+            </mat-select>
+        </div>
+          
+        </div>
+      </form>
+      <!-- form end -->
+
+      <br><br>
+
+      <div class="col-md-12 " style="text-align:center ;">
+        <button  class="neoButtonSuccess" type="submit"  (click)="InsertUpdateProductEntryFormValueInfoList()">{{BtnSaveUpdateText}}</button>&nbsp;
+        <!-- <button  class="neoButtonWarning" type="submit" (click)="GetProductEntryViewRecordsWithNewDbStructure()">View</button>&nbsp; -->
+        <button  class="neoButtonDanger" (click)="onClearInfoClick()">Clear</button>&nbsp;
+      </div>
+      
+    </div >
+
+    <br />
+
+    <div class="userCredentialDiv2" style="padding: 0 5rem 0 5rem">
+      
+      <!-- filter start  -->
+      <div class="col-md-2 " class="filter">
+        <label>Filter</label><br>
+        <input class="neoInput" matInput style="width:20%" placeholder="search" autocomplete="off"
+        (keyup)="filterData($event)">
+      </div>
+      <br>
+       <!-- filter end -->
+
+      <!-- Gridview start -->
+      <div class="table-padding">
+        <div  class="example-container" class='table-responsive mat-elevation-z8'>  
+          <mat-table [dataSource]="dataSource" matSort style="max-height: 22rem;overflow-y: scroll;" >
+            
+            <ng-container matColumnDef="Action" >
+
+              <mat-header-cell *matHeaderCellDef class="table-actions" > Action </mat-header-cell>
+              <mat-cell *matCellDef="let row; let i = index" style="display: flex;justify-content: center;gap:1rem" > 
+                  <button   class="neoButtonSuccess" matTooltip="Edit" (click)="onEditInfoClick(row)" style="width:3rem">
+                    <fa-icon [icon]="faPencil"></fa-icon>
+                  </button>
+                   
+                  <button   class="neoButtonDanger" matTooltip="Delete" (click)="DeleteProductConfig(row.Id,row.UniqueID)" style="width:3rem" >
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                  </button>                
+              </mat-cell>
+
+            </ng-container>    
+            <ng-container matColumnDef="Id">
+
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Product Type</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.Id}} </mat-cell>
+
+            </ng-container>
+            <ng-container matColumnDef="ProductCode">
+
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Product Code</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.ProductCode}} </mat-cell>
+
+            </ng-container>
+            <ng-container matColumnDef="ProductName">
+
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Product Name</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.ProductName}} </mat-cell>
+
+            </ng-container>  
+            <ng-container matColumnDef="DNSet">
+
+              <mat-header-cell *matHeaderCellDef mat-sort-header>DN Set</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.DownTimeSetPoint}} </mat-cell>
+
+            </ng-container>
+            <ng-container matColumnDef="DNDelay">
+
+              <mat-header-cell *matHeaderCellDef mat-sort-header>DN Delay</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.DownTimeDelay}} </mat-cell>
+
+            </ng-container>
+            <ng-container matColumnDef="CycleTime">
+
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Cycle Time</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.CycleTime}} </mat-cell>
+
+            </ng-container>
+            <ng-container matColumnDef="UniqueId">
+
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Unique Id</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.UniqueID}} </mat-cell>
+
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{alternate: row % 2 == 0 }" ></mat-row>
+
+          </mat-table>
+        </div>
+        
+      </div>
+      
+      <!-- Gridview end -->
+
+      <div class="clearfix"></div>
+      <div class="help-block"></div>
+
+    </div>
+  </div>
+    
+    <app-sideheader style="width:2.5%"></app-sideheader>
+
+  </div>
+<!-- footer -->
+<app-footer style="position: fixed;bottom: 0;right:0;left:0;"></app-footer>
+</div>

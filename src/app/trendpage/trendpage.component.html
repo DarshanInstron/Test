@@ -1,0 +1,173 @@
+<!--menuheader-->
+<div class="container-fluid" style="display:flex;" [formGroup]="myform">
+  <div class="col-md-2"  style="background: linear-gradient(to top, #ecf9ed 0%, #f2faff 100%);padding-top:0.5rem">
+    <div style="background: #f2faff;height:3rem;display: flex;justify-content: left;align-items: center;margin:-10px 5px 0 0;width:100%">
+        
+      <img src="assets/images/PlantON Logo.png" style="height:1.5rem;margin-left: 1rem;">
+     
+  </div>
+  <app-leftsidetreeviewwithlimit (PassSelectedParamIds)="ChangeLeftSideTreeTagsSelection($event)"
+        (KpiTreeviewObjectData)="getKpiBoxDataByPlcNumberGatewayNoObjName($event)"
+        [LevelTypeInputs]="LevelTypePassToChild" [WithParameters]="WithParametersPassToChild"
+        [LevelUpToInputs]="LevelUpToPassToChild">
+      </app-leftsidetreeviewwithlimit>
+
+  </div>
+  <div class="col-md-10" *ngIf="IsWaitingOn" style="color:black !important;background:#f2faff">
+    <app-loader style="position:absolute;left:50%;top:50%"></app-loader>
+  </div>
+  <div class="col-md-10" *ngIf="!IsWaitingOn" >    
+  <app-fheadertrial  [pageName]="'TREND PAGE'"  style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px !important;"></app-fheadertrial>
+      <hr style="margin-top:-0.8rem">
+      <div style="display: flex;background:#f2faff;margin-top:-0.3rem" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+          <div style="width:97%">
+            <div style=" width: 100%; background-color: transparent !important;box-sizing: none;">
+              <div style="padding: 10px;" id="htmlData">
+      
+                <div class="row" style="padding: 10px 0 0 10px;" *ngIf="!IsHideForPDFbtnClick">
+      
+                  <div class="col-md-3">
+                    <label>From Date</label>
+                    <div style="display:flex">
+      
+                      <input class="neoInput" matInput [ngxMatDatetimePicker]="picker1" [formControl]="dtFromDateTime"
+                        (click)="picker1.open()" [disabled]="IsLiveDataPlottingOn">
+                      <mat-datepicker-toggle matSuffix [for]="$any(picker1)"></mat-datepicker-toggle>
+                      <ngx-mat-datetime-picker #picker1 [showSeconds]="true"></ngx-mat-datetime-picker>
+                    </div>
+      
+                  </div>
+      
+                  <div class="col-md-3">
+                    <label>To Date</label>
+                    <div style="display:flex">
+      
+                      <input class="neoInput" matInput [ngxMatDatetimePicker]="picker2" [formControl]="dtToDateTime"
+                        (click)="picker2.open()" [disabled]="IsLiveDataPlottingOn">
+                      <mat-datepicker-toggle matSuffix [for]="$any(picker2)"></mat-datepicker-toggle>
+                      <ngx-mat-datetime-picker #picker2 [showSeconds]="true"></ngx-mat-datetime-picker>
+                    </div>
+      
+                  </div>
+      
+                  <div class="col-md-6">
+                    <div>&nbsp;</div>
+                    <button *ngIf="!IsHideForPDFbtnClick" class="neoButtonPrimary" (click)="onClickViewButton()"
+                      [disabled]="IsLiveDataPlottingOn">VIEW</button> &nbsp;
+                    <button [ngClass]="BtnLiveStopTxt === 'LIVE' ? 'neoButtonSuccess' : 'neoButtonDanger'" class="neoButton"
+                      (click)="AddPointsInChartPointas()">{{BtnLiveStopTxt}}</button>
+                      &nbsp;&nbsp;&nbsp;
+                    
+                      <fa-icon class="neoButtonDanger"  *ngIf="!IsHideForPDFbtnClick && objTrendLegendInfoList.length>0" (click)="openPDF()" style="color:#f25961;cursor: pointer;" [icon]="faFilePdf" size="2xl"></fa-icon>
+                    &nbsp;&nbsp;
+                      <fa-icon class="neoButtonSuccess" *ngIf="!IsHideForPDFbtnClick && objTrendLegendInfoList.length>0" (click)="ExportToExcelDownload()" style="color:#1d6f42;cursor:pointer" [icon]="faFileExcel" size="2xl"></fa-icon>
+                  </div>
+      
+                </div>
+                <div class="row" *ngIf="IsHideForPDFbtnClick" style="background-color: white;width:200%">
+                  <div class="col-md-12">
+                    <b> From Date :</b> {{StrFromDateTime}} &nbsp;&nbsp;&nbsp;&nbsp; <b>To Date :</b> {{StrToDateTime}}
+                    &nbsp;&nbsp;&nbsp;&nbsp; <b>Print Date :</b> {{StrPrintDateTime}}
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-md-10">
+                    <div id="chartContainer" style="height: 25rem; width: 100%; margin:auto;box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;"></div>
+                    <br>
+                    <button class="neoButtonDanger" (click)="EnableDisableLineChartPoints()"
+                      [ngClass]="EnableDisableBtnText === 'ENABLE DOT' ? 'neoButtonSuccess' : 'neoButtonDanger'"
+                      class="neoButton"
+                      *ngIf="!IsHideForPDFbtnClick && objTrendLegendInfoList.length>0">{{EnableDisableBtnText}}</button>
+                  </div>
+                  <div class="col-md-2">
+                    <div style="margin-top: 5px;"></div>
+      
+      
+                    <table *ngIf="objTrendLegendInfoList.length>0" id="legendTable" >
+                      <thead>
+                        <th>
+                          Color
+                        </th>
+                        <th>&nbsp;</th>
+                        <th>
+                          Tag Name
+                        </th>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let objTrendLegendInfo of objTrendLegendInfoList; let i = index">
+                          <td style="display:flex;justify-content:center;gap:0.5rem">
+        
+                            <input [(colorPicker)]="objTrendLegendInfo.LineColor"
+                              [style.background]="objTrendLegendInfo.LineColor"
+                              (colorPickerClose)="onColorPickerColorChange(objTrendLegendInfo,i)"
+                              [style.border]="objTrendLegendInfo.LineColor"
+                              style="border-radius: 50%;width:1rem;height:1rem;outline:none;cursor: pointer;">
+        
+                            
+                          </td>
+                          <td>&nbsp;</td>
+                          <td>
+                            <p> {{objTrendLegendInfo.TagName}}</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                      
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sideHeader " [ngStyle]="{'height': LeftSideTreeviewHeight}" style="width:2.5%">
+              <br>
+          <div matTooltip="Production Dashboard" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+            <button mat-icon-button routerLink="/dashboardnew">
+              <fa-icon [icon]="faGears" size="2xl"></fa-icon>
+            </button>
+          </div>
+          <br>
+          <div matTooltip="EMS Dashboard" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+            <button mat-icon-button routerLink="/emsdashboard">
+              <fa-icon [icon]="faAtom" size="2xl"></fa-icon>
+            </button>
+          </div>
+          <br>
+          <div matTooltip="KPI" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+            <button mat-icon-button routerLink="/kpipage">
+              <fa-icon [icon]="faK" size="2xl"></fa-icon>
+            </button>
+          </div>
+          <br>
+          <div matTooltip="Trend" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+            <button mat-icon-button routerLink="/trendpage">
+              <fa-icon [icon]="faChartSimple" size="2xl"></fa-icon>
+            </button>
+          </div>
+          <br>
+          <div matTooltip="Custom Reports" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+            <button mat-icon-button routerLink="/customreport">
+              <fa-icon [icon]="faR" size="2xl" ></fa-icon>
+            </button>
+          </div>
+          <br>
+          <div matTooltip="Custom Reports" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+            <button mat-icon-button routerLink="/userdefination">
+              <fa-icon [icon]="faUserPlus" size="2xl" ></fa-icon>
+          </button>
+          </div>
+          <br>
+          <div matTooltip="Custom Reports" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+            <button mat-icon-button routerLink="/manualentry">
+              <fa-icon [icon]="faM" size="2xl" ></fa-icon>
+          </button>
+          </div>
+          ....
+          </div>  
+          
+        </div>
+        <app-footer style="position: fixed;bottom: 0;right:0;left:0;"></app-footer>
+    </div>
+</div>
+

@@ -1,0 +1,39 @@
+@import '../app.component.scss';
+
+.mat-expansion-panel-header,.mat-acordian,.mat-expansion-panel{
+    background-color: transparent;
+    background: transparent !important;
+    color:#1c2d61;
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+    
+  }
+
+   .mat-expansion-panel-header
+  {
+    height:2.5rem
+  }
+
+   .mat-expansion-panel-header:hover
+   {
+    background-color: transparent;
+    background: transparent !important;
+    color:#7aa4d5;
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.15);
+  }
+
+  // .mat-checkbox-ripple .mat-ripple-element {
+  //   background: linear-gradient(to bottom, #7aa4d5 30%, #1c2d61 100%) !important;
+   
+  // }
+  
+  // .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  //   background: linear-gradient(to bottom, #7aa4d5 30%, #1c2d61 100%) !important;
+    
+  // }
+  
+  // .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  //   background: linear-gradient(to bottom, #7aa4d5 30%, #1c2d61 100%) !important;
+    
+  // }
+
+

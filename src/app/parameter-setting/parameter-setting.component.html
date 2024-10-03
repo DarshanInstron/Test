@@ -1,0 +1,454 @@
+<div class="container-fluid" style="display:flex;"> 
+  <div class="col-md-12">
+    <app-fheadertrial  [pageName]="'PARAMETER SETTING'" style="box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px !important;"></app-fheadertrial>
+    <hr style="margin-top:-0.8rem">
+    <div style="display: flex;background:#f2faff;margin-top:-0.3rem" [ngStyle]="{'height': LeftSideTreeviewHeight}">
+        <div style="width:97%;">
+    <form [formGroup]="myform" *ngIf="IsRecEdited=='1'">
+      <div class="row" style="align-items: center;display:flex;justify-content: center;gap:2rem;flex-wrap: wrap;">
+
+        <div class="col-md-2">
+          <label>Parameter Name:</label>
+          <input class="neoInput" placeholder="Parameter Name" name="Pname" formControlName="Pname">
+        </div>
+
+        <div class="col-md-2">
+          <label>Tag Name:</label>
+          <input class="neoInput" placeholder="Tag Name" name="TagName" formControlName="TagName">
+        </div>
+        <div class="col-md-2">
+          <label>Parameter No:</label>
+          <input class="neoInput" placeholder="Parameter No" name="ParameterNo" formControlName="ParameterNo">
+        </div>
+        <div class="col-md-2">
+          <label>Gateway:</label>
+          <input class="neoInput" placeholder="Gateway" name="Gateway" formControlName="GatewayNo">
+        </div>
+        <div class="col-md-2">
+          <label>Image: {{ImagePath}} <i class="material-icons" style="color: red;" (click)="RemoveImageFromParameterSetting()" *ngIf="ImagePath!=''">delete</i></label>
+          <input class="neoInput" placeholder="Image" name="Image" formControlName="Image" type="file"
+            (change)="onFileSelected($event)">
+        </div>
+
+        <div class="col-md-2">
+          <label>Decimal Places:</label><br>
+          <mat-select class="neoSelect" placeholder="Select" formControlName="DecPlace">
+            <mat-option *ngFor="let objUnitDetailsInfo of objDecimalDetailsInfoList" [value]="objUnitDetailsInfo.Id">
+              {{ objUnitDetailsInfo.Description }}
+            </mat-option>
+          </mat-select>
+        </div>
+
+        <div class="col-md-2">
+          <label>User Management:</label><br>
+          <!-- <mat-select class="neoSelect" [formControl]="UserMgmt" multiple> -->
+          <mat-select class="neoSelect" [formControl]="UserMgmt" multiple  placeholder="Select">
+            <mat-option class="neoOption"
+              *ngFor="let objUserCredentialsFormValueInfo of objActUserTypeMasterInfoList"
+              [value]="objUserCredentialsFormValueInfo.Id">
+              {{objUserCredentialsFormValueInfo.Description}}
+            </mat-option>
+          </mat-select>
+        </div>
+
+        <div class="col-md-2">
+          <label>User:</label><br>
+          <mat-select class="neoSelect" placeholder="Select User" [formControl]="Ugr" multiple>
+            <mat-option class="neoOption"
+              *ngFor="let objUserCredentialsFormValueInfo of objActUserGroupMasterInfoList"
+              [value]="objUserCredentialsFormValueInfo.Id">
+              {{objUserCredentialsFormValueInfo.Description}}
+            </mat-option>
+          </mat-select>
+        </div>
+
+        <!-- <div class="col-md-2">
+          <label>Parameter Color:</label>
+          <input class="neoInput" placeholder="Parameter Color" name="Pcolor" formControlName="Pcolor"
+            required>
+        </div> -->
+
+        <div class="col-md-2">
+          <label>Parameter Color:</label>
+          <input class="neoInput" [(colorPicker)]="Pcolor" [style.background]="Pcolor" [style.border]="Pcolor" 
+            (colorPickerClose)="onColorPickerColorChange(Pcolor)" style="outline:none;cursor: pointer;"  placeholder="Select">
+        </div>
+        <div class="col-md-2">
+          <label>Cost:</label>
+          <input class="neoInput" placeholder="Cost" name="Cost" formControlName="Cost" required>
+        </div>
+
+        <div class="col-md-2">
+          <label>Current Rate Unit:</label><br>
+          <mat-select class="neoSelect" placeholder="Select Current Rate Unit" formControlName="Unit">
+            <mat-option *ngFor="let objUnitDetailsInfo of objUnitDetailsInfoList" [value]="objUnitDetailsInfo.Id">
+              {{ objUnitDetailsInfo.Description }}
+            </mat-option>
+          </mat-select>
+        </div>
+
+        <div class="col-md-2">
+          <label>Icon Class:</label>
+          <input class="neoInput" placeholder="Icon Class" name="IconClass" formControlName="IconClass" required>
+        </div>
+
+        <div class="col-md-2">
+          <label>Total Consumption Unit:</label><br>
+          <mat-select class="neoSelect" placeholder="Select Total Consumption Unit" formControlName="ToTUnit">
+            <mat-option *ngFor="let objUnitDetailsInfo of objUnitDetailsInfoList" [value]="objUnitDetailsInfo.Id">
+              {{ objUnitDetailsInfo.Description }}
+            </mat-option>
+          </mat-select>
+        </div>
+
+        <div class="col-md-2">
+          <label>View Order:</label>
+          <input class="neoInput" placeholder="View Order" name="VOrder" formControlName="VOrder" required>
+        </div>
+        <div class="col-md-2">
+          <label>Dly.Tm-Low Alm:</label>
+          <input class="neoInput" placeholder="Dly.Tm-Low Alm" name="DlyTmLwAlm" formControlName="DlyTmLwAlm" required>
+        </div>
+
+        <div class="col-md-2">
+          <label>Low ALm Sp:</label>
+          <input class="neoInput" placeholder="Low Alm Sp" name="LwAlmSP" formControlName="LwAlmSP" required>
+        </div>
+
+        <div class="col-md-2">
+          <label>Dly.Tm-High Alm:</label>
+          <input class="neoInput" placeholder="Dly.Tm-High Alm" name="DlyTmHighAlm" formControlName="DlyTmHighAlm"
+            required>
+        </div>
+
+        <div class="col-md-2">
+          <label>High Alm Sp:</label>
+          <input class="neoInput" placeholder="High Alm Sp" name="HighAlmSP" formControlName="HighAlmSP" required>
+        </div>
+
+        <div class="col-md-2">
+          <label>Raw Min:</label>
+          <input class="neoInput" placeholder="Raw Min" name="RawMin" formControlName="RawMin" required>
+        </div>
+
+        <div class="col-md-2">
+          <label>Raw Max:</label>
+          <input class="neoInput" placeholder="Raw Max" name="RawMax" formControlName="RawMax" required>
+        </div>
+
+        <div class="col-md-2">
+          <label>Engg. Min:</label>
+          <input class="neoInput" placeholder="Engg. Min" name="EnggMin" formControlName="EnggMin" required>
+        </div>
+
+        <div class="col-md-2">
+          <label>Engg. Max:</label>
+          <input class="neoInput" placeholder="Engg. Max" name="EnggMax" formControlName="EnggMax" required>
+        </div>
+
+        <div class="col-md-2">
+          <label>Totalise Factor:</label>
+          <input class="neoInput" placeholder="Totalise Factor" name="TotaliseFactor" formControlName="TotaliseFactor"
+            required>
+        </div>
+
+
+        <div class="col-md-2">
+          <label>Ptrend:</label>
+          <input class="neoInput" placeholder="Ptrend" name="Ptrend" formControlName="Ptrend" required>
+        </div>
+        <div class="col-md-2">
+          <label>EnAlmofLhwo:</label>
+          <mat-select class="neoSelect" placeholder="Select En.Alm of" [formControl]="EnAlmofLhwo" multiple
+            (selectionChange)="ShowLhWoInputControls()">
+            <mat-option class="neoOption" value="l">
+              L
+            </mat-option>
+            <mat-option class="neoOption" value="h">
+              H
+            </mat-option>
+            <mat-option class="neoOption" value="wo">
+              WO
+            </mat-option>
+          </mat-select>
+        </div>
+
+        <div class="col-md-2" *ngIf="IsShowLvalue=='1'">
+          <label>L:</label>
+          <input class="neoInput" placeholder="L" name="Lvalue" formControlName="Lvalue" required>
+        </div>
+
+        <div class="col-md-2" *ngIf="IsShowHvalue=='1'">
+          <label>H:</label>
+          <input class="neoInput" placeholder="H" name="Hvalue" formControlName="Hvalue" required>
+        </div>
+
+        <div class="col-md-2" *ngIf="IsShowWovalue=='1'">
+          <label>WO:</label>
+          <input class="neoInput" placeholder="WO" name="Wovalue" formControlName="Wovalue" required>
+        </div>
+
+
+
+        <!-- treeview level defination start -->
+        <div class="col-md-12">
+
+          <div style="display: flex;justify-content: center;gap:1rem">
+            <div class="col-md-2">&nbsp;</div>
+
+            <div class="col-md-2">
+              <label>Treeview Type:</label><br>
+              <mat-select class="neoSelect" placeholder="Treeview Type" formControlName="TreeviewType"
+                (selectionChange)="ChangeFillMachinesDetailsInfoList()">
+                <mat-option value="a">
+                  A
+                </mat-option>
+                <mat-option value="b">
+                  B
+                </mat-option>
+                <mat-option value="c">
+                  C
+                </mat-option>
+              </mat-select>
+            </div>
+
+            <div class="col-md-2">
+              <label>Machine:</label><br>
+              <mat-select class="neoInput" placeholder="Select Machine" formControlName="MachineId" #singleSelect>
+                <mat-option>
+                  <ngx-mat-select-search [formControl]="MultiLvlFilterCtrl5"
+                    [placeholderLabel]="'Search'"></ngx-mat-select-search>
+                </mat-option>
+                <mat-option value="0"> Select </mat-option>
+                <mat-option *ngFor="let objMultLvlTreeview of filteredMultiLvl5 | async"
+                  [value]="objMultLvlTreeview.C001_LevelId">
+                  {{objMultLvlTreeview.C003_LevelName}}
+                </mat-option>
+              </mat-select>
+            </div>
+
+            <div class="col-md-3">
+              <br>
+              <button class="neoButtonSuccess" (click)="AddTempPSettingTreeviewDetailsToList()">Add</button>
+            </div>
+
+          </div>
+          <br>
+          <div style="display: flex;justify-content: center;" *ngIf="objTempPSettingTreeviewDetailsList.length>0">
+            <table class="neomorphic-table">
+              <thead>
+                <th>Action</th>
+                <th>Treeview Type</th>
+                <th>Machine</th>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let objTempPSettingTreeviewDetails of objTempPSettingTreeviewDetailsList;let indexOfelement=index;">
+                  <td>
+                    <button class="neoButtonDanger" matTooltip="Delete" style="width:1.5rem;height:1.5rem"
+                      (click)="DeleteTempPSettingTreeviewDetailsFromList(indexOfelement)">
+                      <fa-icon [icon]="faTrash"></fa-icon>
+                    </button>
+                  </td>
+                  <td>
+                    <span style="text-transform: uppercase;">{{objTempPSettingTreeviewDetails.TreeviewType}}</span>
+                  </td>
+                  <td>
+                    <span>{{objTempPSettingTreeviewDetails.Description}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+        <!-- treeview level defination end -->
+
+      </div>
+    </form>
+    <br>
+    <div class="col-md-12" style="text-align:center ;">
+      <button class="neoButtonSuccess" type="submit" *ngIf="IsRecEdited == '1'"
+        (click)="onInsertUpdateParameterSettingClick()">{{BtnSaveUpdateText}}</button>&nbsp;
+      <button class="neoButtonDanger" *ngIf="IsRecEdited == '1'"
+        (click)="onClearParameterSettingDetailsClick()">Clear</button>&nbsp;
+      <!-- <button class="neoButtonWarning" type="submit" (click)="onViewParameterSettingFormInfo()">View</button> -->
+    </div>
+
+    <div class="userCredentialDiv2" style="padding: 0 -5rem 0 -5rem" *ngIf="objParameterSettingInfoList.length>0">
+      <!-- filter start  -->
+      <!-- <div class="col-md-2" class="filter">
+        <label>Filter</label><br>
+        <input class="neoInput" matInput  style="width:25%"
+        placeholder="search" autocomplete="off" >
+      </div> -->
+      <!-- filter end -->
+
+      <!-- Gridview start -->
+      <div class="col-md-4" class="filter">
+        <label>Filter</label><br>
+        <input class="neoInput" matInput style="width:15%;height:2.5rem" placeholder="search" autocomplete="off"
+          (keyup)="filterData($event)">
+      </div>
+      <br>
+      <div class="example-container" class='table-responsive mat-elevation-z8'>
+        <mat-table [dataSource]="dataSource" matSort style="max-height: 18rem;overflow-y: scroll;">
+          <ng-container matColumnDef="Action">
+            <mat-header-cell *matHeaderCellDef class="table-actions"> Action </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = index" style="display: flex;justify-content: center;gap:1rem">
+              <button class="neoButtonSuccess" matTooltip="Edit" style="width:1.5rem;height:1.5rem"
+                (click)="onEditParameterSettingFormInfo(row)">
+                <fa-icon [icon]="faPencil"></fa-icon>
+              </button>
+              <!-- <button class="neoButtonDanger" matTooltip="Delete" style="width:3rem">
+                <fa-icon [icon]="faTrash"></fa-icon>
+              </button> -->
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Gateway">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Gateway</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.GatewayNo}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="ParameterName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Parameter Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Pname}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="TagName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Tag Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.TagName}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="ParameterNo">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Param No</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.ParameterNo}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="TotaliseFactor">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Totalise Factor</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.TotaliseFactor}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Ptrend">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Ptrend</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Ptrend}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Cost">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Cost</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Cost}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="CurrentRateUnit">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Current Rate Unit</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.UnitName}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="TotalConsumptionUnit">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Total Consumption Unit</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.ToTUnitName}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="DlyTmLowAlm">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Dly.Tm-Low Alm</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.DlyTmLwAlm}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="DlyTmHighAlm">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Dly.Tm-High Alm</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.DlyTmHighAlm}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="LowALmSp">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Low ALm Sp</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.LwAlmSP}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="HighAlmSp">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>High Alm Sp</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.HighAlmSP}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="RawMin">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Raw Min</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.RawMin}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="RawMax">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Raw Max</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.RawMax}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="EnggMin">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Engg. Min</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.EnggMin}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="EnggMax">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Engg. Max</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.EnggMax}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="EnAlmof">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>En. Alm of</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.EnAlmofLhwo}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="DecimalPlaces">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Decimal Places</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.DecPlace}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{alternate: row % 2 == 0 }"></mat-row>
+
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 25, 50, 100]" [pageSize]="10" aria-label="Default pagination"
+          showFirstLastButtons>
+        </mat-paginator>
+      </div>
+
+    </div>
+    <!-- Gridview end -->
+
+
+  </div>
+  <div class="sideHeader " [ngStyle]="{'height': LeftSideTreeviewHeight}" style="width:2.5%">
+    <br>
+<div matTooltip="Production Dashboard" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+  <button mat-icon-button routerLink="/dashboardnew">
+    <fa-icon [icon]="faGears" size="2xl"></fa-icon>
+  </button>
+</div>
+<br>
+<div matTooltip="EMS Dashboard" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+  <button mat-icon-button routerLink="/emsdashboard">
+    <fa-icon [icon]="faAtom" size="2xl"></fa-icon>
+  </button>
+</div>
+<br>
+<div matTooltip="KPI" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+  <button mat-icon-button routerLink="/kpipage">
+    <fa-icon [icon]="faK" size="2xl"></fa-icon>
+  </button>
+</div>
+<br>
+<div matTooltip="Trend" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+  <button mat-icon-button routerLink="/trendpage">
+    <fa-icon [icon]="faChartSimple" size="2xl"></fa-icon>
+  </button>
+</div>
+<br>
+<div matTooltip="Custom Reports" matTooltipPosition="left" style="display:flex;flex-direction: column;justify-content: center;align-items: center;">
+  <button mat-icon-button routerLink="/customreport">
+    <fa-icon [icon]="faR" size="2xl" ></fa-icon>
+  </button>
+</div>
+....
+</div>
+  </div>
+  <app-footer style="position: fixed;bottom: 0;right:0;left:0;"></app-footer>
+  </div>
+</div>

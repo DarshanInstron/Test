@@ -1,0 +1,94 @@
+@import '../app.component.scss';
+
+
+.neoButtonAdd
+{
+    height:2rem;
+    width:2rem;
+    border-radius: 10px;
+    border: none;
+    color:#1c2d61;
+    background-color: #dfeaff;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.25);
+}
+    
+.neoButtonAdd:active
+{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+    color:black;
+} 
+
+
+// button theme end
+
+
+.container-fluid > div
+{
+    display: flex;
+    justify-content: center;
+}
+
+table{
+    background: #f3f3f3;
+}
+
+th{
+    //border:1px solid black;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    width:8vw;
+    text-align: center;
+    background: #e8f0fe;
+    border-radius: 3px;
+    height:3.5rem;
+    color:#1c2d61
+}
+
+tbody > tr
+{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+    width:8vw;
+    text-align: center;
+   
+    border-radius: 3px;
+    height: 3.5rem;
+    
+}
+
+
+
+
+
+
+
+.neomorphic-table {
+    //border-collapse: collapse;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    border-radius: 10px;
+  }
+  
+  .neomorphic-table th,
+  .neomorphic-table td {
+    padding: 0 16px;
+    text-align: center;
+   
+  }
+  
+  .neomorphic-table th {
+    background-color: #e8f0fe;
+    border-bottom: 1px solid #ccc;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+  
+  .neomorphic-table td {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+
+  .neomorphic-table tr{
+    box-shadow: inset 0px -6px 10px rgba(255,255,255,1), inset 0px 4px 15px  rgba(0, 0, 0, 0.25);
+  }
+
